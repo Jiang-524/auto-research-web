@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Auto Research Web: visual academic research workflow and paper dashboard.">
+    <title>Auto Research Web</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="header-top">
+        <div>
+          <p class="eyebrow">robotics literature operations</p>
+          <h1>Auto Research Web</h1>
+        </div>
+        <nav class="header-actions" aria-label="Primary">
+          <a class="icon-link" href="https://github.com/Jiang-524/auto-research-web" target="_blank" rel="noreferrer" title="GitHub repository" aria-label="GitHub repository">
+            <span aria-hidden="true">GH</span>
+          </a>
+          <button id="exportCuration" class="icon-button" type="button" title="Export curation JSON" aria-label="Export curation JSON">
+            <span aria-hidden="true">EX</span>
+          </button>
+        </nav>
+      </div>
+
+      <section class="command-bar" aria-label="Paper filters">
+        <label class="search-box">
+          <span>Search</span>
+          <input id="searchInput" type="search" placeholder="paper, method, tag, author">
+        </label>
+        <label>
+          <span>Topic</span>
+          <select id="topicFilter">
+            <option value="all">All topics</option>
+          </select>
+        </label>
+        <label>
+          <span>Year</span>
+          <select id="yearFilter">
+            <option value="all">All years</option>
+          </select>
+        </label>
+        <label>
+          <span>Status</span>
+          <select id="statusFilter">
+            <option value="all">All states</option>
+            <option value="bookmarked">Bookmarked</option>
+            <option value="verify">Needs verification</option>
+          </select>
+        </label>
+      </section>
+    </header>
+
+    <main>
+      <section class="metrics-grid" aria-label="Corpus metrics">
+        <article class="metric metric-accent-green">
+          <span>Papers</span>
+          <strong id="paperCount">0</strong>
+        </article>
+        <article class="metric metric-accent-blue">
+          <span>Bookmarked</span>
+          <strong id="bookmarkCount">0</strong>
+        </article>
+        <article class="metric metric-accent-amber">
+          <span>Need verification</span>
+          <strong id="verifyCount">0</strong>
+        </article>
+        <article class="metric metric-accent-red">
+          <span>Updated</span>
+          <strong id="updatedAt">--</strong>
+        </article>
+      </section>
+
+      <section class="workspace-grid">
+        <aside class="pipeline-panel" aria-label="Research pipeline">
+          <div class="section-heading">
+            <p class="eyebrow">workflow</p>
+            <h2>ARS pipeline map</h2>
+          </div>
+          <div id="pipelineList" class="pipeline-list"></div>
+        </aside>
+
+        <section class="papers-panel" aria-label="Paper results">
+          <div class="section-heading section-heading-row">
+            <div>
+              <p class="eyebrow">corpus</p>
+              <h2>Paper triage</h2>
+            </div>
+            <div class="segmented" role="tablist" aria-label="View mode">
+              <button class="segment active" data-view="cards" type="button">Cards</button>
+              <button class="segment" data-view="compact" type="button">Compact</button>
+            </div>
+          </div>
+          <div id="paperList" class="paper-list"></div>
+        </section>
+      </section>
+
+      <section class="skills-panel" aria-label="Skill suite">
+        <div class="section-heading section-heading-row">
+          <div>
+            <p class="eyebrow">capabilities</p>
+            <h2>Features at a glance</h2>
+          </div>
+          <span class="source-pill">Adapted from academic-research-skills</span>
+        </div>
+        <div id="skillGrid" class="skill-grid"></div>
+      </section>
+    </main>
+
+    <template id="paperTemplate">
+      <article class="paper-card">
+        <div class="paper-main">
+          <div class="paper-meta"></div>
+          <h3></h3>
+          <p class="summary"></p>
+          <div class="tag-row"></div>
+        </div>
+        <div class="paper-actions">
+          <button class="icon-button bookmark" type="button" title="Bookmark paper" aria-label="Bookmark paper">BK</button>
+          <button class="icon-button verify" type="button" title="Mark for verification" aria-label="Mark for verification">VF</button>
+          <a class="icon-link paper-link" target="_blank" rel="noreferrer" title="Open paper" aria-label="Open paper">AR</a>
+        </div>
+      </article>
+    </template>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>

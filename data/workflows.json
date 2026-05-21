@@ -1,0 +1,71 @@
+{
+  "pipeline": [
+    {
+      "stage": "1",
+      "name": "Research",
+      "output": "Research question, search strategy, bibliography, source verification, synthesis."
+    },
+    {
+      "stage": "2",
+      "name": "Write",
+      "output": "Draft structure, argument map, figures, manuscript sections, citation plan."
+    },
+    {
+      "stage": "2.5",
+      "name": "Integrity",
+      "output": "Blocking reference, claim, data, and failure-mode verification before review."
+    },
+    {
+      "stage": "3",
+      "name": "Review",
+      "output": "Editorial review, domain review, methodology review, and adversarial critique."
+    },
+    {
+      "stage": "4",
+      "name": "Revise",
+      "output": "Traceable response plan, revised draft, unresolved limitation log."
+    },
+    {
+      "stage": "3'",
+      "name": "Re-review",
+      "output": "Focused verification of revisions and residual issues."
+    },
+    {
+      "stage": "4.5",
+      "name": "Final integrity",
+      "output": "Fresh verification pass before formatting and publication."
+    },
+    {
+      "stage": "5",
+      "name": "Finalize",
+      "output": "Format conversion, final manuscript package, optional PDF workflow."
+    },
+    {
+      "stage": "6",
+      "name": "Process summary",
+      "output": "Human-AI collaboration record, decisions, limitations, and audit trail."
+    }
+  ],
+  "skills": [
+    {
+      "name": "Deep Research",
+      "description": "13-agent research team for Socratic guidance, PRISMA reviews, source verification, synthesis, bias checks, and monitoring.",
+      "modes": ["full", "quick", "lit-review", "fact-check", "socratic", "systematic-review"]
+    },
+    {
+      "name": "Academic Paper",
+      "description": "12-agent paper writing workflow with style calibration, writing quality checks, revision, citation conversion, and disclosure support.",
+      "modes": ["plan", "full", "outline-only", "revision", "abstract-only", "citation-check", "format-convert"]
+    },
+    {
+      "name": "Academic Paper Reviewer",
+      "description": "7-agent multi-perspective peer review with quality rubrics, editorial synthesis, methodology focus, re-review, and calibration.",
+      "modes": ["full", "quick", "guided", "methodology-focus", "re-review", "calibration"]
+    },
+    {
+      "name": "Academic Pipeline",
+      "description": "10-stage orchestrator with adaptive checkpoints, mandatory integrity gates, two-stage review, material passport, and process summary.",
+      "modes": ["from scratch", "mid-entry", "revision-entry", "resume-from-passport"]
+    }
+  ]
+}
