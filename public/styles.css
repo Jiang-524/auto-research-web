@@ -130,15 +130,36 @@ h1, h2, h3, h4, p { margin: 0; }
   border-top: 1px solid var(--line);
 }
 
+.lang-toggle-btn {
+  display: block;
+  width: 100%;
+  padding: 7px 0;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--panel);
+  color: var(--green);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin-bottom: 10px;
+}
+
+.lang-toggle-btn:hover {
+  background: var(--green-bg);
+  border-color: var(--green);
+}
+
 .main-content {
   flex: 1;
   min-width: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 .main-content > .page-container {
-  padding: 24px min(32px, 2vw);
-  max-width: 1100px;
+  padding: 24px 32px;
+  width: 100%;
 }
 
 /* ============================================================

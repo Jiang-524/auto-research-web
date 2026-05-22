@@ -62,7 +62,7 @@ Example:
 
 ```env
 LLM_PROVIDER=openai
-LLM_API_KEY=sk-your-key-here
+LLM_API_KEY=your-provider-api-key
 LLM_MODEL=gpt-4o
 LLM_BASE_URL=https://api.openai.com/v1
 ```

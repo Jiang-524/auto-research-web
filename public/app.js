@@ -35,8 +35,208 @@ const S = {
   settings: loadJSON(CFG.storageKeys.settings, {}),
   tasks: loadJSON(CFG.storageKeys.tasks, []),
   collections: loadJSON(CFG.storageKeys.collections, []),
-  llmStatus: null
+  llmStatus: null,
+  lang: loadJSON("autoResearchLang", null) || "en"
 };
+
+// ---- i18n Translations ----
+const T = {
+  en: {
+    dashboard: "Dashboard", collector: "Paper Collector", summarizer: "Paper Summarizer",
+    research: "Deep Research", ideas: "Idea Generator", writer: "Paper Writer",
+    reviewer: "Paper Reviewer", pipeline: "Pipeline", citation: "Citation Tools",
+    export: "Export Center", docs: "Docs / Guide", settings: "Settings",
+    runResearch: "Run Research", runWriter: "Run Writer", runReview: "Run Review",
+    summarize: "Summarize", generateIdeas: "Generate Ideas", run: "Run",
+    copy: "Copy", exportLabel: "Export", retry: "Retry",
+    loading: "Loading...", noData: "No data yet.",
+    apiRequired: "API Required", implemented: "Implemented", planned: "Planned",
+    saveSettings: "Save Reference Settings",
+    search: "Search", allTopics: "All topics", allYears: "All years", allStates: "All states",
+    bookmarked: "Bookmarked", needsVerification: "Needs verification",
+    papers: "Papers", updated: "Updated",
+    quickActions: "Quick Actions", researchWorkflow: "Research Workflow",
+    featuresGlance: "Features at a Glance",
+    dashboardEyebrow: "research workspace", dashboardTitle: "Research Workspace",
+    apiConnected: "Connected", apiNotSet: "Not Set", apiStatus: "API Status",
+    recentTasks: "Recent Tasks",
+    collectPapers: "Collect Papers", summarizePaper: "Summarize Paper",
+    startResearch: "Start Research", generateIdeasBtn: "Generate Ideas",
+    writePaper: "Write Paper", reviewPaper: "Review Paper",
+    apiNotConfigured: "LLM not configured. Set LLM_API_KEY in .env file.",
+    provideText: "Provide text or select a paper",
+    provideTopic: "Enter a research topic",
+    provideContent: "Provide content to work with",
+    providePaper: "Provide paper content to review",
+    provideTextCitation: "Provide text to process",
+    provideContentExport: "Provide content to export",
+    settingsDesc: "Configure your LLM provider. API keys are configured server-side in the .env file and never exposed to the browser. See the Docs page for setup instructions.",
+    serverSideConfig: "LLM Provider (Server-Side Configuration)",
+    settingsNote: "These settings are saved to localStorage for UI reference only. The actual API key must be set in the .env file on the backend server.",
+    securityNotes: "Security Notes",
+    securityItem1: "This page never asks for or stores API keys in browser storage.",
+    securityItem2: "For a secure setup, run the backend server (node server.js) and configure .env instead.",
+    securityItem3: "Never commit .env or any file containing real API keys to git.",
+    securityItem4: "See .env.example for the required environment variables.",
+    checkApiStatus: "Check API Status",
+    apiCheckRunning: "Checking...",
+    apiCheckOk: "Connected",
+    apiCheckFail: "Not configured - set LLM_API_KEY in the backend .env file",
+    apiCheckError: "Cannot reach API server. Is the backend running? (node server.js)",
+    currentApiStatus: "Current API Status",
+    exportAsMd: "Export as Markdown", exportAsJson: "Export as JSON",
+    exportAsText: "Export as Plain Text", exportAsLatex: "Export as LaTeX",
+    exportAsBibtex: "Export as BibTeX",
+    quickExportCuration: "Quick Export: Curated Papers",
+    quickExportDesc: "Export your bookmarked and verification-flagged papers.",
+    exportCurationBtn: "Export Curation (JSON)",
+    formatSupport: "Format Support",
+
+    // DeepSeek V4 Pro specific
+    deepseekV4Title: "DeepSeek V4 Pro Configuration",
+    deepseekV4Desc: "DeepSeek V4 Pro is a recommended provider for this application. It offers strong academic reasoning capabilities at competitive pricing.",
+    deepseekV4Config: `To use DeepSeek V4 Pro, configure your .env file as follows:
+
+LLM_PROVIDER=deepseek
+LLM_API_KEY=your-deepseek-key
+LLM_MODEL=deepseek-v4-pro
+LLM_BASE_URL=https://api.deepseek.com/v1
+
+# Optional: adjust temperature for academic tasks
+DEFAULT_TEMPERATURE=0.3
+DEFAULT_MAX_TOKENS=8192
+
+Then run: npm start`,
+
+    // Pipeline entry modes
+    pipelineEntryTitle: "Pipeline Entry Modes",
+    pipelineEntryDesc: "Start the pipeline at different stages depending on your starting point.",
+    fullPipeline: "Full Pipeline (from Research)",
+    fullPipelineDesc: "Start from a research question. Run Stage 1 Deep Research, then proceed through all stages.",
+    paperReviewEntry: "Existing Paper Review Entry",
+    paperReviewEntryDesc: "Already have a draft? Enter at Stage 3 to get a multi-perspective peer review.",
+    reviewerCommentsEntry: "Reviewer Comments Entry",
+    reviewerCommentsEntryDesc: "Have reviewer feedback? Enter at Stage 4 to revise your paper with coaching.",
+    resumePassport: "Resume from Passport",
+    resumePassportDesc: "Resume an interrupted session from a Material Passport. Planned feature.",
+
+    // Manual entry
+    manualEntry: "Manual Entry",
+    addPaper: "Add Paper",
+    titleRequired: "Title is required",
+    paperAdded: "Paper added to collection!",
+    myCollection: "My Collection",
+    searchImport: "Search & Import",
+    collectorSearchPlaceholder: "Topic, DOI, arXiv ID, URL, or keywords...",
+    realApiNote: "Real API search (arXiv, Semantic Scholar) requires backend integration. Currently searches local corpus.",
+    paperAddedToast: "Paper added to collection!",
+    removed: "Removed",
+  },
+  zh: {
+    dashboard: "仪表盘", collector: "论文收集器", summarizer: "论文总结器",
+    research: "深度研究", ideas: "思路生成器", writer: "论文写作",
+    reviewer: "论文审稿", pipeline: "流水线", citation: "引文工具",
+    export: "导出中心", docs: "文档/指南", settings: "设置",
+    runResearch: "运行研究", runWriter: "运行写作", runReview: "运行审稿",
+    summarize: "总结", generateIdeas: "生成思路", run: "运行",
+    copy: "复制", exportLabel: "导出", retry: "重试",
+    loading: "加载中...", noData: "暂无数据。",
+    apiRequired: "需要API", implemented: "已实现", planned: "计划中",
+    saveSettings: "保存参考设置",
+    search: "搜索", allTopics: "全部主题", allYears: "全部年份", allStates: "全部状态",
+    bookmarked: "已收藏", needsVerification: "需要验证",
+    papers: "论文", updated: "更新时间",
+    quickActions: "快捷操作", researchWorkflow: "研究工作流",
+    featuresGlance: "功能一览",
+    dashboardEyebrow: "研究工作区", dashboardTitle: "研究工作区",
+    apiConnected: "已连接", apiNotSet: "未设置", apiStatus: "API状态",
+    recentTasks: "最近任务",
+    collectPapers: "收集论文", summarizePaper: "总结论文",
+    startResearch: "开始研究", generateIdeasBtn: "生成思路",
+    writePaper: "写论文", reviewPaper: "审稿论文",
+    apiNotConfigured: "LLM未配置。请在.env文件中设置LLM_API_KEY。",
+    provideText: "请提供文本或选择论文",
+    provideTopic: "请输入研究主题",
+    provideContent: "请提供要处理的内容",
+    providePaper: "请提供要审稿的论文内容",
+    provideTextCitation: "请提供要处理的文本",
+    provideContentExport: "请提供要导出的内容",
+    settingsDesc: "配置您的LLM提供商。API密钥在服务器端的.env文件中配置，绝不会暴露给浏览器。请参阅文档页面了解设置说明。",
+    serverSideConfig: "LLM提供商（服务器端配置）",
+    settingsNote: "这些设置仅保存到localStorage作为UI参考。实际的API密钥必须在后端服务器的.env文件中设置。",
+    securityNotes: "安全说明",
+    securityItem1: "此页面不会请求或将API密钥存储在浏览器存储中。",
+    securityItem2: "为了安全设置，请运行后端服务器（node server.js）并在.env中配置。",
+    securityItem3: "切勿将.env或任何包含真实API密钥的文件提交到git。",
+    securityItem4: "请参阅.env.example了解所需的环境变量。",
+    checkApiStatus: "检查API状态",
+    apiCheckRunning: "检查中...",
+    apiCheckOk: "已连接",
+    apiCheckFail: "未配置 - 请在后端.env文件中设置LLM_API_KEY",
+    apiCheckError: "无法连接到API服务器。后端是否正在运行？（node server.js）",
+    currentApiStatus: "当前API状态",
+    exportAsMd: "导出为Markdown", exportAsJson: "导出为JSON",
+    exportAsText: "导出为纯文本", exportAsLatex: "导出为LaTeX",
+    exportAsBibtex: "导出为BibTeX",
+    quickExportCuration: "快速导出：已策划论文",
+    quickExportDesc: "导出您已收藏和标记为验证的论文。",
+    exportCurationBtn: "导出策划（JSON）",
+    formatSupport: "格式支持",
+
+    // DeepSeek V4 Pro specific
+    deepseekV4Title: "DeepSeek V4 Pro 配置",
+    deepseekV4Desc: "DeepSeek V4 Pro 是本应用的推荐提供商。它以有竞争力的价格提供强大的学术推理能力。",
+    deepseekV4Config: `要使用 DeepSeek V4 Pro，请在 .env 文件中配置如下：
+
+LLM_PROVIDER=deepseek
+LLM_API_KEY=您的deepseek密钥
+LLM_MODEL=deepseek-v4-pro
+LLM_BASE_URL=https://api.deepseek.com/v1
+
+# 可选：为学术任务调整temperature
+DEFAULT_TEMPERATURE=0.3
+DEFAULT_MAX_TOKENS=8192
+
+然后运行：npm start`,
+
+    // Pipeline entry modes
+    pipelineEntryTitle: "流水线入口模式",
+    pipelineEntryDesc: "根据您的起点，在不同的阶段开始流水线。",
+    fullPipeline: "完整流水线（从研究开始）",
+    fullPipelineDesc: "从研究问题开始。运行第1阶段深度研究，然后依次进行所有阶段。",
+    paperReviewEntry: "已有论文审稿入口",
+    paperReviewEntryDesc: "已有草稿？从第3阶段进入，获取多视角同行评审。",
+    reviewerCommentsEntry: "审稿意见入口",
+    reviewerCommentsEntryDesc: "已有审稿意见？从第4阶段进入，在指导下修改论文。",
+    resumePassport: "从材料护照恢复",
+    resumePassportDesc: "从材料护照恢复中断的会话。计划中的功能。",
+
+    // Manual entry
+    manualEntry: "手动录入",
+    addPaper: "添加论文",
+    titleRequired: "标题为必填项",
+    paperAdded: "论文已添加到集合中！",
+    myCollection: "我的集合",
+    searchImport: "搜索与导入",
+    collectorSearchPlaceholder: "主题、DOI、arXiv ID、URL或关键词...",
+    realApiNote: "真实API搜索（arXiv、Semantic Scholar）需要后端集成。目前仅搜索本地语料库。",
+    paperAddedToast: "论文已添加到集合中！",
+    removed: "已移除",
+  }
+};
+
+function t(key) {
+  const dict = T[S.lang] || T.en;
+  return dict[key] || T.en[key] || key;
+}
+
+function toggleLang() {
+  S.lang = S.lang === "en" ? "zh" : "en";
+  saveJSON("autoResearchLang", S.lang);
+  renderNav();
+  renderPage();
+  renderPaperDashboard();
+}
 
 // ---- API Client ----
 const API = {
@@ -167,19 +367,21 @@ function runButton(label, onClick, disabled) {
 
 // ---- Navigation ----
 const NAV_ITEMS = [
-  { id: "dashboard", label: "Dashboard", icon: "D" },
-  { id: "collector", label: "Paper Collector", icon: "C" },
-  { id: "summarizer", label: "Summarizer", icon: "S" },
-  { id: "research", label: "Deep Research", icon: "R" },
-  { id: "ideas", label: "Idea Generator", icon: "I" },
-  { id: "writer", label: "Paper Writer", icon: "W" },
-  { id: "reviewer", label: "Reviewer", icon: "V" },
-  { id: "pipeline", label: "Pipeline", icon: "P" },
-  { id: "citation", label: "Citation Tools", icon: "T" },
-  { id: "export", label: "Export Center", icon: "E" },
-  { id: "docs", label: "Docs / Guide", icon: "?" },
-  { id: "settings", label: "Settings", icon: "*" }
+  { id: "dashboard", key: "dashboard", icon: "D" },
+  { id: "collector", key: "collector", icon: "C" },
+  { id: "summarizer", key: "summarizer", icon: "S" },
+  { id: "research", key: "research", icon: "R" },
+  { id: "ideas", key: "ideas", icon: "I" },
+  { id: "writer", key: "writer", icon: "W" },
+  { id: "reviewer", key: "reviewer", icon: "V" },
+  { id: "pipeline", key: "pipeline", icon: "P" },
+  { id: "citation", key: "citation", icon: "T" },
+  { id: "export", key: "export", icon: "E" },
+  { id: "docs", key: "docs", icon: "?" },
+  { id: "settings", key: "settings", icon: "*" }
 ];
+
+function navLabel(item) { return t(item.key); }
 
 function renderNav() {
   const nav = $(".sidebar-nav");
@@ -187,9 +389,16 @@ function renderNav() {
   nav.innerHTML = NAV_ITEMS.map(item => `
     <a href="#${item.id}" class="nav-item ${S.page === item.id ? "active" : ""}">
       <span class="nav-icon">${item.icon}</span>
-      <span>${item.label}</span>
+      <span>${t(item.key)}</span>
     </a>
   `).join("");
+
+  // Update language toggle in footer
+  const langBtn = $(".lang-toggle-btn");
+  if (langBtn) {
+    langBtn.textContent = S.lang === "en" ? "中文" : "EN";
+    langBtn.title = S.lang === "en" ? "Switch to Chinese" : "切换到英文";
+  }
 }
 
 function navigate(page) {
@@ -232,32 +441,32 @@ function renderDashboard(c) {
   c.innerHTML = `
     <div class="page-header">
       <div>
-        <p class="eyebrow">dashboard</p>
-        <h2>Research Workspace</h2>
+        <p class="eyebrow">${t("dashboardEyebrow")}</p>
+        <h2>${t("dashboardTitle")}</h2>
       </div>
     </div>
 
     <div class="dash-metrics">
-      <div class="dash-metric"><strong>${paperCount}</strong><span>Papers</span></div>
-      <div class="dash-metric"><strong>${bookmarkCount}</strong><span>Bookmarked</span></div>
-      <div class="dash-metric"><strong>${taskCount}</strong><span>Recent Tasks</span></div>
-      <div class="dash-metric ${llmOk ? 'dm-green' : 'dm-amber'}"><strong>${llmOk ? 'Connected' : 'Not Set'}</strong><span>API Status</span></div>
+      <div class="dash-metric"><strong>${paperCount}</strong><span>${t("papers")}</span></div>
+      <div class="dash-metric"><strong>${bookmarkCount}</strong><span>${t("bookmarked")}</span></div>
+      <div class="dash-metric"><strong>${taskCount}</strong><span>${t("recentTasks")}</span></div>
+      <div class="dash-metric ${llmOk ? 'dm-green' : 'dm-amber'}"><strong>${llmOk ? t("apiConnected") : t("apiNotSet")}</strong><span>${t("apiStatus")}</span></div>
     </div>
 
     <div class="dash-grid">
       <div class="dash-card">
-        <h3>Quick Actions</h3>
+        <h3>${t("quickActions")}</h3>
         <div class="quick-actions">
-          <button class="btn btn-outline" onclick="navigate('collector')">Collect Papers</button>
-          <button class="btn btn-outline" onclick="navigate('summarizer')">Summarize Paper</button>
-          <button class="btn btn-outline" onclick="navigate('research')">Start Research</button>
-          <button class="btn btn-outline" onclick="navigate('ideas')">Generate Ideas</button>
-          <button class="btn btn-outline" onclick="navigate('writer')">Write Paper</button>
-          <button class="btn btn-outline" onclick="navigate('reviewer')">Review Paper</button>
+          <button class="btn btn-outline" onclick="navigate('collector')">${t("collectPapers")}</button>
+          <button class="btn btn-outline" onclick="navigate('summarizer')">${t("summarizePaper")}</button>
+          <button class="btn btn-outline" onclick="navigate('research')">${t("startResearch")}</button>
+          <button class="btn btn-outline" onclick="navigate('ideas')">${t("generateIdeasBtn")}</button>
+          <button class="btn btn-outline" onclick="navigate('writer')">${t("writePaper")}</button>
+          <button class="btn btn-outline" onclick="navigate('reviewer')">${t("reviewPaper")}</button>
         </div>
       </div>
       <div class="dash-card">
-        <h3>Research Workflow</h3>
+        <h3>${t("researchWorkflow")}</h3>
         <div class="workflow-mini">
           ${["Research","Write","Integrity Check","Review","Revise","Finalize"].map((s,i) => `<div class="wf-step"><span class="wf-num">${i+1}</span><span>${s}</span></div>`).join("")}
         </div>
@@ -266,7 +475,7 @@ function renderDashboard(c) {
     </div>
 
     <div class="dash-card" style="margin-top:16px">
-      <h3>Features at a Glance</h3>
+      <h3>${t("featuresGlance")}</h3>
       <div class="feature-grid">
         ${[
           ["Deep Research","7 modes: full, quick, systematic-review, socratic, fact-check, lit-review, review","research",STATUS.API_REQUIRED],
@@ -799,24 +1008,24 @@ function renderPipeline(c) {
     <p class="page-desc">10-stage pipeline from RESEARCH through FINALIZE. Mandatory integrity gates at stages 2.5 and 4.5. Each stage shows purpose, inputs, outputs, and links to the corresponding tool.</p>
 
     <div class="module-card">
-      <h3>Pipeline Entry Modes</h3>
-      <p style="font-size:0.82rem;color:var(--muted);margin-bottom:10px">Start the pipeline at different stages depending on your starting point.</p>
+      <h3>${t("pipelineEntryTitle")}</h3>
+      <p style="font-size:0.82rem;color:var(--muted);margin-bottom:10px">${t("pipelineEntryDesc")}</p>
       <div class="mode-grid">
         <div class="mode-card" style="cursor:pointer" onclick="navigate('research')">
-          <strong>Full Pipeline (from Research)</strong>
-          <p>Start from a research question. Run Stage 1 Deep Research, then proceed through all stages.</p>
+          <strong>${t("fullPipeline")}</strong>
+          <p>${t("fullPipelineDesc")}</p>
         </div>
         <div class="mode-card" style="cursor:pointer" onclick="navigate('reviewer')">
-          <strong>Existing Paper Review Entry</strong>
-          <p>Already have a draft? Enter at Stage 3 to get a multi-perspective peer review.</p>
+          <strong>${t("paperReviewEntry")}</strong>
+          <p>${t("paperReviewEntryDesc")}</p>
         </div>
         <div class="mode-card" style="cursor:pointer" onclick="navigate('writer')">
-          <strong>Reviewer Comments Entry</strong>
-          <p>Have reviewer feedback? Enter at Stage 4 to revise your paper with coaching.</p>
+          <strong>${t("reviewerCommentsEntry")}</strong>
+          <p>${t("reviewerCommentsEntryDesc")}</p>
         </div>
         <div class="mode-card">
-          <strong>Resume from Passport</strong>
-          <p>${statusBadge(STATUS.PLANNED)} Resume an interrupted session from a Material Passport. Planned feature.</p>
+          <strong>${t("resumePassport")}</strong>
+          <p>${statusBadge(STATUS.PLANNED)} ${t("resumePassportDesc")}</p>
         </div>
       </div>
     </div>
@@ -939,21 +1148,21 @@ function renderExportCenter(c) {
     </div>
 
     <div class="export-buttons" style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px">
-      <button class="btn btn-primary" data-fmt="markdown">Export as Markdown</button>
-      <button class="btn btn-outline" data-fmt="json">Export as JSON</button>
-      <button class="btn btn-outline" data-fmt="text">Export as Plain Text</button>
-      <button class="btn btn-outline" data-fmt="latex">Export as LaTeX</button>
-      <button class="btn btn-outline" data-fmt="bibtex">Export as BibTeX</button>
+      <button class="btn btn-primary" data-fmt="markdown">${t("exportAsMd")}</button>
+      <button class="btn btn-outline" data-fmt="json">${t("exportAsJson")}</button>
+      <button class="btn btn-outline" data-fmt="text">${t("exportAsText")}</button>
+      <button class="btn btn-outline" data-fmt="latex">${t("exportAsLatex")}</button>
+      <button class="btn btn-outline" data-fmt="bibtex">${t("exportAsBibtex")}</button>
     </div>
 
     <div class="module-card" style="margin-top:16px">
-      <h3>Quick Export: Curated Papers</h3>
-      <p style="font-size:0.82rem;color:var(--muted)">Export your bookmarked and verification-flagged papers.</p>
-      <button class="btn btn-outline" id="exportCurationBtn" style="margin-top:8px">Export Curation (JSON)</button>
+      <h3>${t("quickExportCuration")}</h3>
+      <p style="font-size:0.82rem;color:var(--muted)">${t("quickExportDesc")}</p>
+      <button class="btn btn-outline" id="exportCurationBtn" style="margin-top:8px">${t("exportCurationBtn")}</button>
     </div>
 
     <div class="module-card" style="margin-top:16px">
-      <h3>Format Support</h3>
+      <h3>${t("formatSupport")}</h3>
       <div class="format-table">
         <div class="format-row"><span>Markdown</span><span class="badge-green status-badge">Implemented</span></div>
         <div class="format-row"><span>JSON</span><span class="badge-green status-badge">Implemented</span></div>
@@ -1008,11 +1217,11 @@ function renderSettings(c) {
     <div class="page-header">
       <div><p class="eyebrow">settings</p><h2>API Configuration</h2></div>
     </div>
-    <p class="page-desc">Configure your LLM provider. <strong>API keys are configured server-side</strong> in the <code>.env</code> file and never exposed to the browser. See the Docs page for setup instructions.</p>
+    <p class="page-desc">${t("settingsDesc")}</p>
 
     <div class="module-card">
-      <h3>LLM Provider (Server-Side Configuration)</h3>
-      <p style="font-size:0.82rem;color:var(--muted);margin-bottom:12px">These non-secret reference settings are saved in this browser for display only. The actual provider configuration and API key must be set in the backend server's <code>.env</code> file.</p>
+      <h3>${t("serverSideConfig")}</h3>
+      <p style="font-size:0.82rem;color:var(--muted);margin-bottom:12px">${t("settingsNote")}</p>
       <div class="form-grid">
         <label>Provider
           <select id="setProvider" class="input-full">
@@ -1027,24 +1236,24 @@ function renderSettings(c) {
         <label>Temperature<input type="number" id="setTemp" class="input-full" value="${s.temperature||0.7}" min="0" max="2" step="0.1"></label>
         <label>Max Tokens<input type="number" id="setMaxTokens" class="input-full" value="${s.maxTokens||4096}" min="100" max="128000"></label>
       </div>
-      <button class="btn btn-primary" id="saveSettingsBtn" style="margin-top:12px">Save Reference Settings</button>
+      <button class="btn btn-primary" id="saveSettingsBtn" style="margin-top:12px">${t("saveSettings")}</button>
     </div>
 
     <div class="module-card" style="margin-top:16px">
-      <h3>Current API Status</h3>
+      <h3>${t("currentApiStatus")}</h3>
       <div id="apiStatusCheck">
-        <button class="btn btn-outline" id="checkApiBtn">Check API Status</button>
+        <button class="btn btn-outline" id="checkApiBtn">${t("checkApiStatus")}</button>
         <span id="apiStatusResult" style="margin-left:8px"></span>
       </div>
     </div>
 
     <div class="module-card" style="margin-top:16px">
-      <h3>Security Notes</h3>
+      <h3>${t("securityNotes")}</h3>
       <ul style="font-size:0.84rem;color:var(--muted);line-height:1.8">
-        <li>This page never asks for or stores API keys in browser storage.</li>
-        <li>Run the backend server (<code>node server.js</code>) and configure provider credentials in <code>.env</code>.</li>
-        <li>Never commit <code>.env</code> or any file containing real API keys to git.</li>
-        <li>See <code>.env.example</code> for the required environment variables.</li>
+        <li>${t("securityItem1")}</li>
+        <li>${t("securityItem2")}</li>
+        <li>${t("securityItem3")}</li>
+        <li>${t("securityItem4")}</li>
       </ul>
     </div>
   `;
@@ -1160,6 +1369,10 @@ npm start</pre>
     </div>
 
     <div class="module-card">
+      <h3>${t("deepseekV4Title")}</h3>
+      <p style="font-size:0.84rem;line-height:1.6;margin-bottom:10px">${t("deepseekV4Desc")}</p>
+      <pre style="background:#f4f5f2;padding:14px;border-radius:7px;font-size:0.8rem;overflow-x:auto;white-space:pre-wrap">${t("deepseekV4Config")}</pre>
+
       <h3>License & Attribution</h3>
       <p style="font-size:0.84rem;line-height:1.6">Licensed under <strong>CC BY-NC 4.0</strong>. Based on <a href="https://github.com/Imbad0202/academic-research-skills" target="_blank" rel="noreferrer" style="color:var(--green)">Academic Research Skills</a> by Cheng-I Wu, also CC BY-NC 4.0. This project is a visual, interactive web implementation inspired by the ARS workflow concepts. It is not the original ARS project.</p>
     </div>
@@ -1276,6 +1489,7 @@ function setupLayout() {
         </div>
         <nav class="sidebar-nav"></nav>
         <div class="sidebar-footer">
+          <button class="lang-toggle-btn" onclick="toggleLang()" title="Switch language" style="width:100%;margin-bottom:8px">中文</button>
           <p style="font-size:0.68rem;color:var(--muted)">Based on ARS by<br>Cheng-I Wu</p>
           <a href="https://github.com/Imbad0202/academic-research-skills" target="_blank" rel="noreferrer" style="font-size:0.68rem;color:var(--green)">CC BY-NC 4.0</a>
         </div>
