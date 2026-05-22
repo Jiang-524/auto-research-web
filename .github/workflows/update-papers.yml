@@ -17,9 +17,9 @@ jobs:
         with:
           python-version: "3.12"
       - name: Fetch arXiv papers
-        run: python scripts/fetch_papers.py --max-results 12 --output data/papers.json --sleep 3 --timeout 12
+        run: python scripts/fetch_papers.py --max-results 12 --output public/data/papers.json --sleep 3 --timeout 12
       - name: Commit refreshed data
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Update paper data"
-          file_pattern: data/papers.json
+          file_pattern: public/data/papers.json

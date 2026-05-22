@@ -48,7 +48,7 @@ TAG_RULES = {
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--max-results", type=int, default=10, help="Results per topic query.")
-    parser.add_argument("--output", default="data/papers.json", help="Output JSON path.")
+    parser.add_argument("--output", default="public/data/papers.json", help="Output JSON path.")
     parser.add_argument("--sleep", type=float, default=3.0, help="Delay between arXiv requests.")
     parser.add_argument("--timeout", type=float, default=12.0, help="Network timeout per arXiv request.")
     args = parser.parse_args()
