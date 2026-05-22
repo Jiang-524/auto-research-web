@@ -104,7 +104,7 @@ def fetch_topic(topic: str, query: str, max_results: int, timeout: float) -> lis
     url = f"{ARXIV_API}?{urllib.parse.urlencode(params)}"
     request = urllib.request.Request(
         url,
-        headers={"User-Agent": "auto-research-web/0.1 (mailto:jiangyingzhuo7@gmail.com)"},
+        headers={"User-Agent": "auto-research-web/0.1"},
     )
     with urllib.request.urlopen(request, timeout=timeout) as response:
         body = response.read()

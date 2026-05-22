@@ -15,8 +15,8 @@
           <h1>Auto Research Web</h1>
         </div>
         <nav class="header-actions" aria-label="Primary">
-          <a class="icon-link" href="https://github.com/Jiang-524/auto-research-web" target="_blank" rel="noreferrer" title="GitHub repository" aria-label="GitHub repository">
-            <span aria-hidden="true">GH</span>
+          <a class="icon-link" href="https://github.com/Imbad0202/academic-research-skills" target="_blank" rel="noreferrer" title="Reference project on GitHub" aria-label="Reference project">
+            <span aria-hidden="true">REF</span>
           </a>
           <button id="exportCuration" class="icon-button" type="button" title="Export curation JSON" aria-label="Export curation JSON">
             <span aria-hidden="true">EX</span>
@@ -76,7 +76,7 @@
         <aside class="pipeline-panel" aria-label="Research pipeline">
           <div class="section-heading">
             <p class="eyebrow">workflow</p>
-            <h2>ARS pipeline map</h2>
+            <h2>ARS Pipeline Map</h2>
           </div>
           <div id="pipelineList" class="pipeline-list"></div>
         </aside>
@@ -85,7 +85,7 @@
           <div class="section-heading section-heading-row">
             <div>
               <p class="eyebrow">corpus</p>
-              <h2>Paper triage</h2>
+              <h2>Paper Triage</h2>
             </div>
             <div class="segmented" role="tablist" aria-label="View mode">
               <button class="segment active" data-view="cards" type="button">Cards</button>
@@ -100,13 +100,37 @@
         <div class="section-heading section-heading-row">
           <div>
             <p class="eyebrow">capabilities</p>
-            <h2>Features at a glance</h2>
+            <h2>Features at a Glance</h2>
           </div>
           <span class="source-pill">Adapted from academic-research-skills</span>
         </div>
         <div id="skillGrid" class="skill-grid"></div>
       </section>
     </main>
+
+    <!-- Feature Detail Modal -->
+    <dialog id="featureModal" class="feature-modal">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <p class="eyebrow" id="modalEyebrow"></p>
+          <h2 id="modalTitle"></h2>
+        </div>
+        <button class="modal-close" autofocus>&times;</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </dialog>
+
+    <!-- Paper Detail Modal -->
+    <dialog id="paperModal" class="feature-modal">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <p class="eyebrow">paper detail</p>
+          <h2 id="paperModalTitle"></h2>
+        </div>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body" id="paperModalBody"></div>
+    </dialog>
 
     <template id="paperTemplate">
       <article class="paper-card">
@@ -117,9 +141,15 @@
           <div class="tag-row"></div>
         </div>
         <div class="paper-actions">
-          <button class="icon-button bookmark" type="button" title="Bookmark paper" aria-label="Bookmark paper">BK</button>
-          <button class="icon-button verify" type="button" title="Mark for verification" aria-label="Mark for verification">VF</button>
-          <a class="icon-link paper-link" target="_blank" rel="noreferrer" title="Open paper" aria-label="Open paper">AR</a>
+          <button class="icon-button bookmark" type="button" title="Bookmark paper" aria-label="Bookmark paper">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 2h10v12l-5-3-5 3V2z" stroke="currentColor" stroke-width="1.5"/></svg>
+          </button>
+          <button class="icon-button verify" type="button" title="Mark for verification" aria-label="Mark for verification">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="currentColor" stroke-width="1.5"/></svg>
+          </button>
+          <a class="icon-link paper-link" target="_blank" rel="noreferrer" title="Open paper" aria-label="Open paper">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3H3v10h10v-3M9 3h4v4M14 2L7 9" stroke="currentColor" stroke-width="1.5"/></svg>
+          </a>
         </div>
       </article>
     </template>

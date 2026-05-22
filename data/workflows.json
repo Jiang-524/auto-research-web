@@ -3,69 +3,203 @@
     {
       "stage": "1",
       "name": "Research",
-      "output": "Research question, search strategy, bibliography, source verification, synthesis."
+      "agents": 13,
+      "output": "Research question, search strategy, bibliography, source verification, synthesis.",
+      "deliverables": ["RQ Brief", "Methodology Blueprint", "Bibliography", "Synthesis Report"],
+      "detail": "13-agent deep research team explores the topic. Supports Socratic guided mode, PRISMA-compliant systematic reviews, intent detection, dialogue health monitoring, and Semantic Scholar API verification."
     },
     {
       "stage": "2",
       "name": "Write",
-      "output": "Draft structure, argument map, figures, manuscript sections, citation plan."
+      "agents": 12,
+      "output": "Draft structure, argument map, figures, manuscript sections, citation plan.",
+      "deliverables": ["Paper Draft (MD/DOCX/LaTeX)", "Style Calibration Report", "Writing Quality Check"],
+      "detail": "12-agent paper writing pipeline with Style Calibration (learns your voice from 3 past papers), Writing Quality Check, LaTeX hardening, visualization (9 chart types), and VLM figure verification."
     },
     {
       "stage": "2.5",
-      "name": "Integrity",
-      "output": "Blocking reference, claim, data, and failure-mode verification before review."
+      "name": "Integrity Gate",
+      "agents": 5,
+      "output": "Blocking reference, claim, data, and failure-mode verification before review.",
+      "deliverables": ["Integrity Verification Report", "Corrected Paper"],
+      "detail": "MANDATORY checkpoint. 5 verification phases: (A) 100% citation existence check, (B) citation context sampling >=30%, (C) statistical data verification, (D) originality/paragraph-level similarity, (E) claim verification against cited sources."
     },
     {
       "stage": "3",
       "name": "Review",
-      "output": "Editorial review, domain review, methodology review, and adversarial critique."
-    },
-    {
-      "stage": "4",
-      "name": "Revise",
-      "output": "Traceable response plan, revised draft, unresolved limitation log."
+      "agents": 7,
+      "output": "Editorial review, domain review, methodology review, and adversarial critique.",
+      "deliverables": ["5 Review Reports", "Editorial Decision", "Revision Roadmap"],
+      "detail": "7-agent multi-perspective peer review simulating a 5-person editorial board: Editor-in-Chief, R1 Methodology, R2 Domain Expert, R3 Interdisciplinary, and Devil's Advocate. 0-100 quality rubric with anti-sycophancy mechanism."
     },
     {
       "stage": "3'",
       "name": "Re-review",
-      "output": "Focused verification of revisions and residual issues."
+      "agents": 5,
+      "output": "Focused verification of revisions and residual issues.",
+      "deliverables": ["Residual Issue Report", "Revision Response Checklist"],
+      "detail": "Verification after author revisions. Checks that every reviewer comment was addressed and no new issues were introduced."
+    },
+    {
+      "stage": "4",
+      "name": "Revise",
+      "agents": 8,
+      "output": "Traceable response plan, revised draft, unresolved limitation log.",
+      "deliverables": ["Revised Draft", "Response to Reviewers", "R&R Traceability Matrix"],
+      "detail": "Revision coaching based on reviewer feedback. R&R Traceability Matrix independently verifies author revision claims. Socratic coaching mode available."
+    },
+    {
+      "stage": "4'",
+      "name": "Re-revise",
+      "agents": 5,
+      "output": "Second revision pass if still needed after re-review.",
+      "deliverables": ["Second Revised Draft"],
+      "detail": "Optional second revision round for papers that need additional work after re-review."
     },
     {
       "stage": "4.5",
-      "name": "Final integrity",
-      "output": "Fresh verification pass before formatting and publication."
+      "name": "Final Integrity Gate",
+      "agents": 5,
+      "output": "Fresh verification pass before formatting and publication.",
+      "deliverables": ["Final Verification Report (100% pass required)"],
+      "detail": "MANDATORY checkpoint. Full re-verification from scratch. Must pass with zero issues to proceed. Final safety net before publication."
     },
     {
       "stage": "5",
       "name": "Finalize",
-      "output": "Format conversion, final manuscript package, optional PDF workflow."
+      "agents": 3,
+      "output": "Format conversion, final manuscript package, optional PDF workflow.",
+      "deliverables": ["Final Paper (MD/DOCX/LaTeX/PDF)"],
+      "detail": "Format conversion to APA 7.0/IEEE/Chicago. PDF compilation via Tectonic. All supplementary materials packaged."
     },
     {
       "stage": "6",
-      "name": "Process summary",
-      "output": "Human-AI collaboration record, decisions, limitations, and audit trail."
+      "name": "Process Summary",
+      "agents": 2,
+      "output": "Human-AI collaboration record, decisions, limitations, and audit trail.",
+      "deliverables": ["Bilingual Process Record (MD + LaTeX PDF)"],
+      "detail": "Auto-generates paper creation process record. 6-dimension Collaboration Quality Evaluation scored 1-100. Bilingual (English + Traditional Chinese)."
     }
   ],
   "skills": [
     {
+      "id": "deep-research",
       "name": "Deep Research",
+      "agents": 13,
       "description": "13-agent research team for Socratic guidance, PRISMA reviews, source verification, synthesis, bias checks, and monitoring.",
-      "modes": ["full", "quick", "lit-review", "fact-check", "socratic", "systematic-review"]
+      "modes": [
+        {"name": "full", "desc": "Complete research pipeline from question to synthesis"},
+        {"name": "quick", "desc": "Rapid literature scan with key findings"},
+        {"name": "lit-review", "desc": "Comprehensive literature review with bibliography"},
+        {"name": "fact-check", "desc": "Verify claims against cited sources"},
+        {"name": "socratic", "desc": "Guided question refinement through dialogue"},
+        {"name": "systematic-review", "desc": "PRISMA-compliant systematic review"}
+      ],
+      "agents_detail": [
+        "Research Question Refiner",
+        "Search Strategist",
+        "Query Executor",
+        "Deduplication Agent",
+        "Relevance Screener",
+        "Full-Text Extractor",
+        "Data Extraction Agent",
+        "Quality Assessor",
+        "Synthesis Writer",
+        "Bias Checker",
+        "Source Verifier",
+        "Dialogue Health Monitor",
+        "Cross-Model DA Agent"
+      ]
     },
     {
+      "id": "academic-paper",
       "name": "Academic Paper",
+      "agents": 12,
       "description": "12-agent paper writing workflow with style calibration, writing quality checks, revision, citation conversion, and disclosure support.",
-      "modes": ["plan", "full", "outline-only", "revision", "abstract-only", "citation-check", "format-convert"]
+      "modes": [
+        {"name": "plan", "desc": "Outline and argument map generation"},
+        {"name": "full", "desc": "Complete paper from research notes to final draft"},
+        {"name": "outline-only", "desc": "Generate detailed paper outline"},
+        {"name": "revision", "desc": "Revise existing draft with feedback"},
+        {"name": "abstract-only", "desc": "Generate polished abstract"},
+        {"name": "citation-check", "desc": "Verify and convert citation formats"},
+        {"name": "format-convert", "desc": "Convert between MD/DOCX/LaTeX formats"}
+      ],
+      "agents_detail": [
+        "Style Calibrator",
+        "Outline Architect",
+        "Argument Mapper",
+        "Section Drafter",
+        "Writing Quality Checker",
+        "Visualization Agent",
+        "Citation Manager",
+        "Format Converter",
+        "Revision Coach",
+        "Disclosure Reviewer",
+        "LaTeX Hardener",
+        "VLM Figure Verifier"
+      ]
     },
     {
+      "id": "academic-reviewer",
       "name": "Academic Paper Reviewer",
+      "agents": 7,
       "description": "7-agent multi-perspective peer review with quality rubrics, editorial synthesis, methodology focus, re-review, and calibration.",
-      "modes": ["full", "quick", "guided", "methodology-focus", "re-review", "calibration"]
+      "modes": [
+        {"name": "full", "desc": "Complete 5-reviewer editorial board simulation"},
+        {"name": "quick", "desc": "Rapid review with key issues highlighted"},
+        {"name": "guided", "desc": "Review focused on specific concerns"},
+        {"name": "methodology-focus", "desc": "Deep dive into methods and statistics"},
+        {"name": "re-review", "desc": "Verify revisions against prior review"},
+        {"name": "calibration", "desc": "Cross-model review calibration"}
+      ],
+      "agents_detail": [
+        "Editor-in-Chief",
+        "R1 Methodology Reviewer",
+        "R2 Domain Expert",
+        "R3 Interdisciplinary Reviewer",
+        "Devil's Advocate",
+        "Synthesis Coordinator",
+        "Anti-Sycophancy Monitor"
+      ],
+      "rubric": {
+        "thresholds": [
+          {"range": "80-100", "label": "Accept", "color": "#2f7d5b"},
+          {"range": "65-79", "label": "Minor Revision", "color": "#376b9e"},
+          {"range": "50-64", "label": "Major Revision", "color": "#b06b22"},
+          {"range": "0-49", "label": "Reject", "color": "#a84c4c"}
+        ],
+        "dimensions": [
+          "Novelty & Contribution",
+          "Methodological Rigor",
+          "Literature Coverage",
+          "Clarity & Presentation",
+          "Reproducibility",
+          "Broader Impact"
+        ]
+      }
     },
     {
+      "id": "academic-pipeline",
       "name": "Academic Pipeline",
+      "agents": 1,
       "description": "10-stage orchestrator with adaptive checkpoints, mandatory integrity gates, two-stage review, material passport, and process summary.",
-      "modes": ["from scratch", "mid-entry", "revision-entry", "resume-from-passport"]
+      "modes": [
+        {"name": "from-scratch", "desc": "Full pipeline from research question"},
+        {"name": "mid-entry", "desc": "Enter at any stage with existing materials"},
+        {"name": "revision-entry", "desc": "Start from reviewer feedback"},
+        {"name": "resume-from-passport", "desc": "Resume interrupted session"}
+      ],
+      "agents_detail": [
+        "Pipeline Orchestrator"
+      ],
+      "checkpoint_system": {
+        "levels": [
+          {"name": "Full Checkpoint", "for": "First-time users", "includes": "Deliverables, next steps, menu"},
+          {"name": "Slim Checkpoint", "for": "Returning users", "includes": "One-line status, auto-continue"},
+          {"name": "Integrity Checkpoint", "for": "Everyone (mandatory)", "includes": "Cannot be skipped or downgraded"}
+        ]
+      }
     }
   ]
 }
