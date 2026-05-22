@@ -7,10 +7,15 @@
     "start": "node server.js",
     "dev": "node server.js",
     "smoke": "node smoke-test.js",
-    "validate": "node -c server.js && node -c prompts/index.js && node -c smoke-test.js && echo 'Syntax OK'",
+    "validate": "node -c server.js && node -c prompts/index.js && node -c bridge/path-safety.js && node -c bridge/workspace.js && node -c bridge/paper-db.js && node -c smoke-test.js && echo 'Syntax OK'",
     "fetch-papers": "python scripts/fetch_papers.py"
   },
-  "keywords": ["academic-research", "paper-dashboard", "research-workflow", "LLM"],
+  "keywords": [
+    "academic-research",
+    "paper-dashboard",
+    "research-workflow",
+    "LLM"
+  ],
   "author": "",
   "license": "CC-BY-NC-4.0",
   "repository": {
@@ -18,9 +23,10 @@
     "url": "https://github.com/Jiang-524/auto-research-web"
   },
   "dependencies": {
-    "express": "^4.21.0",
+    "better-sqlite3": "^12.10.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "cors": "^2.8.5"
+    "express": "^4.21.0"
   },
   "engines": {
     "node": ">=18.0.0"

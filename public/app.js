@@ -131,6 +131,37 @@ Then run: npm start`,
     realApiNote: "Real API search (arXiv, Semantic Scholar) requires backend integration. Currently searches local corpus.",
     paperAddedToast: "Paper added to collection!",
     removed: "Removed",
+
+    // Bridge & Runtime modes
+    runtimeMode: "Runtime Mode", bridgeStatus: "Local Bridge Status",
+    staticDemo: "Static Demo", personalHybrid: "Personal Hybrid", cloudApi: "Cloud API",
+    connected: "Connected", notConnected: "Not Connected",
+    bridgeEndpoint: "Bridge Endpoint", checkConnection: "Check Connection",
+    lastCheck: "Last Check", paperLibraryPath: "Paper Library Path",
+    dbPath: "Database Path", outputPath: "Output Path",
+    privacyNote: "Private files and API keys stay on your machine.",
+    startBridge1: "1. Start the local bridge.",
+    startBridge2: "2. Make sure .env.local is configured.",
+    startBridge3: "3. Confirm paper directory: E:/paper.",
+    startBridge4: "4. Confirm database path.",
+    startBridge5: "5. Click Check Connection.",
+
+    // Paper Library
+    paperLibrary: "Paper Library", scanFolder: "Scan Folder",
+    importSelected: "Import Selected", reindex: "Rebuild Index",
+    foundPapers: "Found Papers", newPapers: "New Papers",
+    existingPapers: "Existing Papers", paperDetail: "Paper Detail",
+    addNote: "Add Note", summarizePaper: "Summarize Paper",
+    noPaperSelected: "No paper selected.",
+
+    // Workspace
+    workspace: "Workspace", projectManager: "Project Manager",
+    fileTree: "File Tree", projectMemory: "Project Memory",
+    gitStatus: "Git Status", readFile: "Read File",
+    writeFile: "Write File", refreshMemory: "Refresh Memory",
+    generateClaude: "Generate Claude Code Instruction",
+    generateCodex: "Generate Codex Review Instruction",
+    moreComing: "More features coming soon.",
   },
   zh: {
     dashboard: "仪表盘", collector: "论文收集器", summarizer: "论文总结器",
@@ -222,6 +253,37 @@ DEFAULT_MAX_TOKENS=8192
     realApiNote: "真实API搜索（arXiv、Semantic Scholar）需要后端集成。目前仅搜索本地语料库。",
     paperAddedToast: "论文已添加到集合中！",
     removed: "已移除",
+
+    // Bridge & Runtime modes
+    runtimeMode: "运行时模式", bridgeStatus: "本地桥接状态",
+    staticDemo: "静态演示", personalHybrid: "个人混合模式", cloudApi: "云端API",
+    connected: "已连接", notConnected: "未连接",
+    bridgeEndpoint: "桥接端点", checkConnection: "检查连接",
+    lastCheck: "最近检查", paperLibraryPath: "论文库路径",
+    dbPath: "数据库路径", outputPath: "输出路径",
+    privacyNote: "隐私说明：私密文件和API密钥保留在您的本地机器上。",
+    startBridge1: "1. 启动本地桥接。",
+    startBridge2: "2. 确认 .env.local 已配置。",
+    startBridge3: "3. 确认论文目录：E:/paper。",
+    startBridge4: "4. 确认数据库路径正确。",
+    startBridge5: "5. 点击检查连接。",
+
+    // Paper Library
+    paperLibrary: "论文库", scanFolder: "扫描文件夹",
+    importSelected: "导入选中", reindex: "重建索引",
+    foundPapers: "发现论文", newPapers: "新论文",
+    existingPapers: "已有论文", paperDetail: "论文详情",
+    addNote: "添加备注", summarizePaper: "总结论文",
+    noPaperSelected: "未选择论文",
+
+    // Workspace
+    workspace: "工作区", projectManager: "项目管理器",
+    fileTree: "文件树", projectMemory: "项目记忆",
+    gitStatus: "Git状态", readFile: "读取文件",
+    writeFile: "写入文件", refreshMemory: "刷新记忆",
+    generateClaude: "生成 Claude Code 指令",
+    generateCodex: "生成 Codex 审稿指令",
+    moreComing: "更多功能即将推出。",
   }
 };
 
@@ -368,6 +430,8 @@ function runButton(label, onClick, disabled) {
 // ---- Navigation ----
 const NAV_ITEMS = [
   { id: "dashboard", key: "dashboard", icon: "D" },
+  { id: "paper-library", key: "paperLibrary", icon: "B" },
+  { id: "workspace", key: "workspace", icon: "W" },
   { id: "collector", key: "collector", icon: "C" },
   { id: "summarizer", key: "summarizer", icon: "S" },
   { id: "research", key: "research", icon: "R" },
@@ -416,6 +480,8 @@ function renderPage() {
 
   switch (S.page) {
     case "dashboard": renderDashboard(container); break;
+    case "paper-library": renderPaperLibrary(container); break;
+    case "workspace": renderWorkspace(container); break;
     case "collector": renderCollector(container); break;
     case "summarizer": renderSummarizer(container); break;
     case "research": renderResearch(container); break;
@@ -1210,16 +1276,283 @@ function renderExportCenter(c) {
   }, 50);
 }
 
+// ---- Paper Library ----
+function renderPaperLibrary(c) {
+  c.innerHTML = `
+    <div class="page-header">
+      <div><p class="eyebrow">paper database</p><h2>${t("paperLibrary")}</h2></div>
+    </div>
+    <div class="bridge-status-bar" id="paperBridgeStatus">
+      <span class="bridge-dot bridge-dot-offline"></span>
+      <span>Bridge: checking...</span>
+    </div>
+
+    <div class="module-card" style="margin-top:12px">
+      <h3>Library Status</h3>
+      <div id="libStatus">Loading...</div>
+    </div>
+
+    <div class="module-card" style="margin-top:12px">
+      <h3>Scan & Import</h3>
+      <button class="btn btn-outline" id="scanFolderBtn">${t("scanFolder")}</button>
+      <button class="btn btn-outline" id="reindexBtn" style="margin-left:8px">${t("reindex")}</button>
+      <div id="scanResult" style="margin-top:8px;font-size:0.84rem"></div>
+    </div>
+
+    <div class="module-card" style="margin-top:12px">
+      <h3>Paper Search</h3>
+      <input type="search" id="paperSearchInput" class="input-full" placeholder="Search by title, author, venue, keyword..." style="margin-bottom:8px">
+      <div id="paperSearchResults" style="font-size:0.84rem"></div>
+    </div>
+  `;
+
+  setTimeout(async () => {
+    updateBridgeStatusBar("paperBridgeStatus");
+    loadLibraryStatus();
+
+    $("#scanFolderBtn")?.addEventListener("click", async () => {
+      const r = await safeFetch("/papers/scan", { method: "POST" });
+      const el = $("#scanResult");
+      if (el) el.innerHTML = r.error
+        ? errorBox(r.error)
+        : `<span style="color:var(--green)">Found ${r.found} files (${r.newCount} new, ${r.existingCount} existing) in ${r.paperDir}</span>`;
+    });
+
+    $("#reindexBtn")?.addEventListener("click", async () => {
+      const r = await safeFetch("/library/reindex", { method: "POST" });
+      loadLibraryStatus();
+    });
+
+    $("#paperSearchInput")?.addEventListener("input", debounce(async (e) => {
+      const q = e.target.value.trim();
+      if (!q) { const el = $("#paperSearchResults"); if (el) el.innerHTML = ""; return; }
+      const results = await safeFetch("/papers/search", {
+        method: "POST", body: JSON.stringify({ query: q })
+      });
+      const el = $("#paperSearchResults");
+      if (el && Array.isArray(results)) {
+        el.innerHTML = results.slice(0, 20).map(p => `
+          <div class="paper-search-item" style="padding:8px 0;border-bottom:1px solid var(--border)">
+            <strong>${escapeHtml(p.title || "Untitled")}</strong>
+            <span style="color:var(--muted)"> ${p.authors || ""} · ${p.year || ""} · ${p.venue || ""}</span>
+            ${p.local_path ? `<span style="color:var(--green);margin-left:6px;font-size:0.75rem">local</span>` : ""}
+          </div>
+        `).join("");
+      }
+    }, 300));
+  }, 50);
+}
+
+async function loadLibraryStatus() {
+  const r = await safeFetch("/db/health");
+  const el = $("#libStatus");
+  if (el && r.ok) {
+    el.innerHTML = `
+      <div class="form-grid" style="font-size:0.84rem">
+        <div><strong>Database:</strong> <code style="font-size:0.75rem">${escapeHtml(r.dbPath)}</code></div>
+        <div><strong>Papers:</strong> ${r.paperCount} | <strong>Chunks:</strong> ${r.chunkCount} | <strong>Tasks:</strong> ${r.taskCount}</div>
+      </div>`;
+  } else if (el) {
+    el.innerHTML = errorBox("Cannot connect to paper database. Is the bridge running?");
+  }
+}
+
+// ---- Workspace / Project Manager ----
+function renderWorkspace(c) {
+  c.innerHTML = `
+    <div class="page-header">
+      <div><p class="eyebrow">project manager</p><h2>${t("workspace")}</h2></div>
+    </div>
+    <div class="bridge-status-bar" id="workspaceBridgeStatus">
+      <span class="bridge-dot bridge-dot-offline"></span>
+      <span>Bridge: checking...</span>
+    </div>
+
+    <div class="module-card" style="margin-top:12px">
+      <h3>Workspace Overview</h3>
+      <div id="wsOverview">Loading...</div>
+    </div>
+
+    <div class="module-card" style="margin-top:12px">
+      <h3>${t("fileTree")}</h3>
+      <div id="wsFileTree" style="font-size:0.84rem;font-family:monospace">Loading...</div>
+    </div>
+
+    <div class="module-card" style="margin-top:12px">
+      <h3>${t("projectMemory")}</h3>
+      <div id="wsMemory" style="font-size:0.84rem">Loading...</div>
+      <button class="btn btn-outline" id="refreshMemoryBtn" style="margin-top:8px">${t("refreshMemory")}</button>
+    </div>
+  `;
+
+  setTimeout(async () => {
+    updateBridgeStatusBar("workspaceBridgeStatus");
+    loadWorkspaceOverview();
+    loadFileTree();
+    loadProjectMemory();
+
+    $("#refreshMemoryBtn")?.addEventListener("click", loadProjectMemory);
+  }, 50);
+}
+
+async function loadWorkspaceOverview() {
+  const r = await safeFetch("/workspace/health");
+  const el = $("#wsOverview");
+  if (el && r.ok) {
+    const git = await safeFetch("/workspace/git/status");
+    el.innerHTML = `
+      <div style="font-size:0.84rem;line-height:1.8">
+        <div><strong>Root:</strong> ${escapeHtml(r.workspaceRoot)}</div>
+        <div><strong>Type:</strong> ${r.projectType} | <strong>Memory files:</strong> ${(r.memoryFiles||[]).join(", ")}</div>
+        ${!git.error ? `<div><strong>Git:</strong> branch <code>${escapeHtml(git.branch)}</code>, ${git.changedFiles} changed files</div>` : ""}
+      </div>`;
+  } else if (el) {
+    el.innerHTML = errorBox("Cannot connect to workspace. Is the bridge running?");
+  }
+}
+
+async function loadFileTree() {
+  const r = await safeFetch("/workspace/tree");
+  const el = $("#wsFileTree");
+  if (el && Array.isArray(r)) {
+    el.innerHTML = renderFileTree(r, 0);
+  } else if (el) {
+    el.innerHTML = "<span style='color:var(--muted)'>Cannot load file tree.</span>";
+  }
+}
+
+function renderFileTree(items, depth) {
+  return items.map(item => `
+    <div style="padding-left:${depth * 16}px;padding-top:2px">
+      ${item.type === "directory" ? "📁" : "📄"} ${escapeHtml(item.name)}
+      ${item.size ? `<span style="color:var(--muted);font-size:0.7rem"> (${formatBytes(item.size)})</span>` : ""}
+      ${item.children ? renderFileTree(item.children, depth + 1) : ""}
+    </div>
+  `).join("");
+}
+
+async function loadProjectMemory() {
+  const r = await safeFetch("/workspace/memory");
+  const el = $("#wsMemory");
+  if (el) {
+    let html = "";
+    if (r.projectMemory) html += `<div style="margin-bottom:8px"><strong>PROJECT_MEMORY.md:</strong><pre style="font-size:0.78rem;max-height:200px;overflow-y:auto;background:var(--bg);padding:8px;border-radius:6px">${escapeHtml(r.projectMemory.slice(0, 2000))}</pre></div>`;
+    if (r.agentContext) html += `<div style="margin-bottom:8px"><strong>AGENT_CONTEXT.md:</strong><pre style="font-size:0.78rem;max-height:150px;overflow-y:auto;background:var(--bg);padding:8px;border-radius:6px">${escapeHtml(r.agentContext.slice(0, 1000))}</pre></div>`;
+    if (r.decisions) html += `<div style="margin-bottom:8px"><strong>Recent Decisions:</strong><pre style="font-size:0.78rem;max-height:100px;overflow-y:auto;background:var(--bg);padding:8px;border-radius:6px">${escapeHtml(r.decisions.slice(0, 800))}</pre></div>`;
+    el.innerHTML = html || "<span style='color:var(--muted)'>No project memory files found.</span>";
+  }
+}
+
+function formatBytes(bytes) {
+  if (!bytes) return "0B";
+  if (bytes < 1024) return bytes + "B";
+  if (bytes < 1048576) return (bytes / 1024).toFixed(1) + "KB";
+  return (bytes / 1048576).toFixed(1) + "MB";
+}
+
+// ---- Bridge Helpers ----
+async function safeFetch(url, options = {}) {
+  try {
+    const bridgeBase = S.settings.bridgeUrl || "http://127.0.0.1:8765";
+    const r = await fetch(bridgeBase + url, {
+      headers: { "Content-Type": "application/json", ...options.headers },
+      ...options,
+      signal: AbortSignal.timeout(5000)
+    });
+    return r.json();
+  } catch {
+    return { error: "Bridge not reachable" };
+  }
+}
+
+async function updateBridgeStatusBar(elementId) {
+  const el = $("#" + elementId);
+  if (!el) return;
+  try {
+    const health = await safeFetch("/health");
+    const dot = el.querySelector(".bridge-dot");
+    const txt = el.querySelector("span:last-child");
+    if (health.ok) {
+      if (dot) { dot.className = "bridge-dot bridge-dot-online"; }
+      if (txt) txt.textContent = `Connected · ${health.llmProvider}/${health.llmModel} · v${health.version}`;
+    } else {
+      if (dot) { dot.className = "bridge-dot bridge-dot-offline"; }
+      if (txt) txt.textContent = "Not connected";
+    }
+  } catch {
+    const dot = el.querySelector(".bridge-dot");
+    if (dot) { dot.className = "bridge-dot bridge-dot-offline"; }
+  }
+}
+
+function debounce(fn, ms) {
+  let timer;
+  return (...args) => { clearTimeout(timer); timer = setTimeout(() => fn(...args), ms); };
+}
+
 // ---- Settings ----
 function renderSettings(c) {
   const s = S.settings;
+  const mode = s.runtimeMode || "static-demo";
+  const bridgeUrl = s.bridgeUrl || "http://127.0.0.1:8765";
+
   c.innerHTML = `
     <div class="page-header">
-      <div><p class="eyebrow">settings</p><h2>API Configuration</h2></div>
+      <div><p class="eyebrow">configuration</p><h2>Settings</h2></div>
     </div>
-    <p class="page-desc">${t("settingsDesc")}</p>
 
     <div class="module-card">
+      <h3>${t("runtimeMode")}</h3>
+      <p style="font-size:0.84rem;color:var(--muted);margin-bottom:10px">
+        Choose how you want to use Auto Research Web. ${t("privacyNote")}
+      </p>
+      <div class="runtime-mode-selector">
+        <label class="runtime-option ${mode==='static-demo'?'runtime-active':''}">
+          <input type="radio" name="runtimeMode" value="static-demo" ${mode==='static-demo'?'checked':''}>
+          <strong>${t("staticDemo")}</strong>
+          <span>Public demo. No private papers. No real API keys. No bridge required.</span>
+        </label>
+        <label class="runtime-option ${mode==='personal-hybrid'?'runtime-active':''}">
+          <input type="radio" name="runtimeMode" value="personal-hybrid" ${mode==='personal-hybrid'?'checked':''}>
+          <strong>${t("personalHybrid")}</strong>
+          <span>Online console + local bridge. Private papers, local DB, personal LLM.</span>
+        </label>
+        <label class="runtime-option ${mode==='cloud-api'?'runtime-active':''}">
+          <input type="radio" name="runtimeMode" value="cloud-api" ${mode==='cloud-api'?'checked':''}>
+          <strong>${t("cloudApi")}</strong>
+          <span>Cloud backend deployment. Not required now. Future option.</span>
+        </label>
+      </div>
+      ${mode === 'personal-hybrid' ? `
+        <div style="margin-top:10px">
+          <label>${t("bridgeEndpoint")}<input type="text" id="setBridgeUrl" class="input-full" value="${escapeHtml(bridgeUrl)}"></label>
+        </div>` : ""}
+      <button class="btn btn-primary" id="saveRuntimeBtn" style="margin-top:10px">Save Runtime Settings</button>
+    </div>
+
+    ${mode === "personal-hybrid" ? `
+    <div class="module-card" style="margin-top:16px">
+      <h3>${t("bridgeStatus")}</h3>
+      <div id="bridgeStatusCard">
+        <div class="bridge-status-bar">
+          <span class="bridge-dot bridge-dot-offline"></span>
+          <span>Checking...</span>
+        </div>
+      </div>
+      <button class="btn btn-outline" id="checkBridgeBtn" style="margin-top:8px">${t("checkConnection")}</button>
+      <div id="bridgeHealthDetail" style="margin-top:8px;font-size:0.82rem"></div>
+      <div id="bridgeSetupHint" style="margin-top:8px;font-size:0.82rem;color:var(--muted)">
+        <p style="font-weight:600;margin-bottom:4px">If not connected:</p>
+        <ol style="padding-left:18px;line-height:1.8">
+          <li>Copy <code>.env.example</code> to <code>.env.local</code> and configure.</li>
+          <li>Run <code>node server.js</code> in the project directory.</li>
+          <li>Make sure the bridge port is 8765.</li>
+          <li>Click Check Connection.</li>
+        </ol>
+      </div>
+    </div>` : ""}
+
+    <div class="module-card" style="margin-top:16px">
       <h3>${t("serverSideConfig")}</h3>
       <p style="font-size:0.82rem;color:var(--muted);margin-bottom:12px">${t("settingsNote")}</p>
       <div class="form-grid">
@@ -1254,15 +1587,54 @@ function renderSettings(c) {
         <li>${t("securityItem2")}</li>
         <li>${t("securityItem3")}</li>
         <li>${t("securityItem4")}</li>
+        <li>The online static site cannot read your local files. The local bridge grants controlled access.</li>
+        <li>API keys stay in .env.local and are never sent to the browser.</li>
       </ul>
     </div>
   `;
 
   setTimeout(() => {
+    // Runtime mode save
+    $("#saveRuntimeBtn")?.addEventListener("click", () => {
+      const modeRadio = document.querySelector("input[name='runtimeMode']:checked");
+      S.settings.runtimeMode = modeRadio?.value || "static-demo";
+      S.settings.bridgeUrl = $("#setBridgeUrl")?.value?.trim() || "http://127.0.0.1:8765";
+      saveJSON(CFG.storageKeys.settings, S.settings);
+      showToast("Runtime settings saved! Reloading...");
+      setTimeout(() => renderPage(), 300);
+    });
+
+    // Bridge health check
+    $("#checkBridgeBtn")?.addEventListener("click", async () => {
+      const detailEl = $("#bridgeHealthDetail");
+      if (detailEl) detailEl.innerHTML = loadingSpinner("Checking...");
+      try {
+        const health = await safeFetch("/health");
+        if (detailEl && health.ok) {
+          detailEl.innerHTML = `
+            <div style="background:#e8f5e9;padding:12px;border-radius:6px;font-size:0.82rem;line-height:1.8">
+              <strong style="color:#2e7d32">Connected</strong>
+              <div>Mode: ${escapeHtml(health.mode)} v${escapeHtml(health.version)}</div>
+              <div>Project: ${escapeHtml(health.projectRoot)}</div>
+              <div>Paper dir: ${escapeHtml(health.paperLibraryPath)}</div>
+              <div>DB: ${escapeHtml(health.dbPath)}</div>
+              <div>Output: ${escapeHtml(health.outputPath)}</div>
+              <div>LLM: ${health.llmConfigured ? health.llmProvider + " / " + health.llmModel : "Not configured"}</div>
+            </div>`;
+        } else if (detailEl) {
+          detailEl.innerHTML = errorBox("Cannot reach bridge at " + (S.settings.bridgeUrl || "http://127.0.0.1:8765"));
+        }
+      } catch {
+        if (detailEl) detailEl.innerHTML = errorBox("Bridge not reachable.");
+      }
+    });
+
+    // Existing settings save
     const saveBtn = $("#saveSettingsBtn");
     if (saveBtn) {
       saveBtn.addEventListener("click", () => {
         S.settings = {
+          ...S.settings,
           provider: $("#setProvider")?.value || "openai",
           model: $("#setModel")?.value?.trim() || "gpt-4o",
           baseUrl: $("#setBaseUrl")?.value?.trim() || "https://api.openai.com/v1",

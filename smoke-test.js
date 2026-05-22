@@ -10,7 +10,7 @@ const TEST_PORT = 3099 + Math.floor(Math.random() * 1000);
 
 function fetchJSON(port, route) {
   return new Promise((resolve, reject) => {
-    http.get(`http://localhost:${port}${route}`, { timeout: 5000 }, (res) => {
+    http.get(`http://127.0.0.1:${port}${route}`, { timeout: 5000 }, (res) => {
       let data = "";
       res.on("data", (chunk) => (data += chunk));
       res.on("end", () => {
@@ -26,7 +26,7 @@ function fetchJSON(port, route) {
 
 function fetchText(port, route) {
   return new Promise((resolve, reject) => {
-    http.get(`http://localhost:${port}${route}`, { timeout: 5000 }, (res) => {
+    http.get(`http://127.0.0.1:${port}${route}`, { timeout: 5000 }, (res) => {
       let data = "";
       res.on("data", (chunk) => (data += chunk));
       res.on("end", () => resolve({ status: res.statusCode, body: data.slice(0, 100) }));
@@ -40,7 +40,13 @@ async function runTests() {
   // Start server
   const server = spawn("node", ["server.js"], {
     cwd: __dirname,
-    env: { ...process.env, PORT: String(TEST_PORT) },
+    env: {
+      ...process.env,
+      PORT: String(TEST_PORT),
+      AUTO_RESEARCH_BRIDGE_PORT: String(TEST_PORT),
+      AUTO_RESEARCH_BRIDGE_HOST: "127.0.0.1",
+      LLM_API_KEY: ""
+    },
     stdio: "pipe"
   });
 
@@ -85,7 +91,7 @@ async function runTests() {
   await check("POST /api/export returns file", async () => {
     const body = JSON.stringify({ content: "# Test", format: "markdown", filename: "test" });
     const r = await new Promise((resolve, reject) => {
-      const req = http.request(`http://localhost:${TEST_PORT}/api/export`, {
+      const req = http.request(`http://127.0.0.1:${TEST_PORT}/api/export`, {
         method: "POST",
         headers: { "Content-Type": "application/json" }
       }, (res) => {
@@ -105,7 +111,7 @@ async function runTests() {
   await check("POST /api/research without key returns 500", async () => {
     const body = JSON.stringify({ topic: "test", mode: "quick" });
     const r = await new Promise((resolve, reject) => {
-      const req = http.request(`http://localhost:${TEST_PORT}/api/research`, {
+      const req = http.request(`http://127.0.0.1:${TEST_PORT}/api/research`, {
         method: "POST",
         headers: { "Content-Type": "application/json" }
       }, (res) => {
@@ -127,7 +133,7 @@ async function runTests() {
   // 5. Malformed JSON
   await check("Malformed JSON returns 400 with sanitized error", async () => {
     const r = await new Promise((resolve, reject) => {
-      const req = http.request(`http://localhost:${TEST_PORT}/api/research`, {
+      const req = http.request(`http://127.0.0.1:${TEST_PORT}/api/research`, {
         method: "POST",
         headers: { "Content-Type": "application/json" }
       }, (res) => {
@@ -180,6 +186,52 @@ async function runTests() {
     const r = await fetchJSON(TEST_PORT, "/data/papers.json");
     if (r.status !== 200) throw new Error(`status ${r.status}`);
     if (!r.body.papers) throw new Error("no papers array");
+  });
+
+  // 9. Bridge health endpoint
+  await check("GET /health returns local bridge status", async () => {
+    const r = await fetchJSON(TEST_PORT, "/health");
+    if (r.status !== 200) throw new Error(`status ${r.status}`);
+    if (r.body.mode !== "local-bridge") throw new Error("not bridge mode");
+  });
+
+  // 10. Workspace bridge blocks env and traversal reads
+  await check("Workspace bridge blocks .env.local reads", async () => {
+    const body = JSON.stringify({ path: ".env.local" });
+    const r = await new Promise((resolve, reject) => {
+      const req = http.request(`http://127.0.0.1:${TEST_PORT}/workspace/read-file`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" }
+      }, (res) => {
+        let data = "";
+        res.on("data", (chunk) => (data += chunk));
+        res.on("end", () => resolve({ status: res.statusCode, body: JSON.parse(data) }));
+      });
+      req.on("error", reject);
+      req.write(body);
+      req.end();
+    });
+    if (r.status !== 400) throw new Error(`expected 400, got ${r.status}`);
+    if (!r.body.error) throw new Error("no error message");
+  });
+
+  await check("Workspace bridge blocks path traversal", async () => {
+    const body = JSON.stringify({ path: "../server.js" });
+    const r = await new Promise((resolve, reject) => {
+      const req = http.request(`http://127.0.0.1:${TEST_PORT}/workspace/read-file`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" }
+      }, (res) => {
+        let data = "";
+        res.on("data", (chunk) => (data += chunk));
+        res.on("end", () => resolve({ status: res.statusCode, body: JSON.parse(data) }));
+      });
+      req.on("error", reject);
+      req.write(body);
+      req.end();
+    });
+    if (r.status !== 400) throw new Error(`expected 400, got ${r.status}`);
+    if (!r.body.error) throw new Error("no error message");
   });
 
   // Summary

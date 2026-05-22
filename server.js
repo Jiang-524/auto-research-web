@@ -1,12 +1,48 @@
 // Auto Research Web - Express backend server
 // Serves static frontend from public/ and provides LLM API proxy routes.
-// API keys are read from environment variables (.env file) - never exposed to frontend.
-
-require("dotenv").config();
+// API keys are read from local environment files - never exposed to frontend.
 
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
+const fs = require("fs");
+
+require("dotenv").config({ path: path.join(__dirname, ".env.local") });
+require("dotenv").config({ path: path.join(__dirname, ".env") });
+
+function setEnvDefault(key, value) {
+  if (process.env[key] === undefined && value !== undefined && value !== null && value !== "") {
+    process.env[key] = String(value);
+  }
+}
+
+function loadLocalJsonConfig() {
+  const configPath = path.join(__dirname, "config.local.json");
+  if (!fs.existsSync(configPath)) return;
+  try {
+    const config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
+    setEnvDefault("AUTO_RESEARCH_BRIDGE_PORT", config.bridge?.port);
+    setEnvDefault("AUTO_RESEARCH_BRIDGE_HOST", config.bridge?.host);
+    setEnvDefault("AUTO_RESEARCH_ALLOWED_ORIGINS", Array.isArray(config.bridge?.allowedOrigins) ? config.bridge.allowedOrigins.join(",") : config.bridge?.allowedOrigins);
+    setEnvDefault("AUTO_RESEARCH_PROJECT_ROOT", config.workspace?.projectRoot);
+    setEnvDefault("AUTO_RESEARCH_WORKSPACE_ROOT", config.workspace?.workspaceRoot);
+    setEnvDefault("AUTO_RESEARCH_PAPER_DIR", config.paths?.paperDir);
+    setEnvDefault("AUTO_RESEARCH_DB_PATH", config.paths?.dbPath);
+    setEnvDefault("AUTO_RESEARCH_OUTPUT_DIR", config.paths?.outputDir);
+    setEnvDefault("AUTO_RESEARCH_INDEX_DIR", config.paths?.indexDir);
+    setEnvDefault("AUTO_RESEARCH_LOG_DIR", config.paths?.logDir);
+    setEnvDefault("LLM_PROVIDER", config.llm?.provider);
+    setEnvDefault("LLM_MODEL", config.llm?.model);
+    setEnvDefault("LLM_BASE_URL", config.llm?.baseURL);
+    setEnvDefault("LLM_API_KEY", config.llm?.apiKey);
+    setEnvDefault("DEFAULT_TEMPERATURE", config.llm?.temperature);
+    setEnvDefault("DEFAULT_MAX_TOKENS", config.llm?.maxTokens);
+  } catch (err) {
+    console.warn("Ignoring invalid config.local.json:", err.message);
+  }
+}
+
+loadLocalJsonConfig();
 
 const {
   DEEP_RESEARCH_MODES,
@@ -23,7 +59,7 @@ const PORT = parseInt(process.env.PORT, 10) || 3000;
 // ---- Middleware ----
 app.use(express.json({ limit: "2mb" }));
 
-const corsOrigins = (process.env.CORS_ORIGIN || "")
+const corsOrigins = (process.env.AUTO_RESEARCH_ALLOWED_ORIGINS || process.env.CORS_ORIGIN || "")
   .split(",")
   .map((origin) => origin.trim())
   .filter(Boolean);
@@ -346,6 +382,168 @@ app.get("/api/modes/:module", (req, res) => {
   res.json({ module, modes });
 });
 
+// ================================================================
+// Local Research Bridge Endpoints
+// ================================================================
+
+const BRIDGE_ENABLED = true;
+const BRIDGE_VERSION = "0.3.0";
+
+// ---- Bridge: Health ----
+app.get("/health", (_req, res) => {
+  res.json({
+    ok: true,
+    mode: "local-bridge",
+    version: BRIDGE_VERSION,
+    projectRoot: process.env.AUTO_RESEARCH_PROJECT_ROOT || process.env.AUTO_RESEARCH_WORKSPACE_ROOT || __dirname,
+    paperLibraryPath: process.env.AUTO_RESEARCH_PAPER_DIR || "E:/paper",
+    dbPath: process.env.AUTO_RESEARCH_DB_PATH || "",
+    outputPath: process.env.AUTO_RESEARCH_OUTPUT_DIR || "",
+    indexPath: process.env.AUTO_RESEARCH_INDEX_DIR || "",
+    llmConfigured: isLLMConfigured(),
+    llmProvider: LLM_CONFIG.provider,
+    llmModel: LLM_CONFIG.model
+  });
+});
+
+// ---- Bridge: Paper Library ----
+try {
+  const paperDb = require("./bridge/paper-db");
+  paperDb.initDb();
+
+  app.get("/db/health", (_req, res) => res.json(paperDb.dbHealth()));
+
+  app.get("/papers", (req, res) => {
+    const { limit, offset, status, year } = req.query;
+    res.json(paperDb.listPapers({ limit: parseInt(limit) || 50, offset: parseInt(offset) || 0, status, year }));
+  });
+
+  app.get("/papers/:id", (req, res) => {
+    const paper = paperDb.getPaper(req.params.id);
+    if (!paper) return res.status(404).json({ error: "Paper not found" });
+    const notes = paperDb.getNotes(req.params.id);
+    res.json({ ...paper, notes });
+  });
+
+  app.post("/papers/scan", (_req, res) => {
+    const result = paperDb.scanPaperFolder();
+    res.json(result);
+  });
+
+  app.post("/papers/import", (req, res) => {
+    const { paper } = req.body;
+    if (!paper || !paper.title) return res.status(400).json({ error: "Paper title is required" });
+    const result = paperDb.importPaper(paper);
+    res.json(result);
+  });
+
+  app.post("/papers/search", (req, res) => {
+    const results = paperDb.searchPapers(req.body || {});
+    res.json(results);
+  });
+
+  app.post("/papers/:id/summarize", async (req, res) => {
+    try {
+      if (!isLLMConfigured()) return res.status(503).json({ error: "LLM not configured. Set LLM_API_KEY in .env.local." });
+      const paper = paperDb.getPaper(req.params.id);
+      if (!paper) return res.status(404).json({ error: "Paper not found" });
+      const content = paper.abstract || paper.title;
+      const result = await callLLM(SUMMARIZER_PROMPT, `Title: ${paper.title}\nAuthors: ${paper.authors}\nContent: ${content}`);
+      const id = `summary_${Date.now()}`;
+      const db = paperDb.getDb();
+      db.prepare("INSERT INTO paper_summaries (id, paper_id, summary_type, content, model) VALUES (?,?,?,?,?)").run(id, paper.id, "general", result, LLM_CONFIG.model);
+      res.json({ id, paperId: paper.id, summary: result, model: LLM_CONFIG.model });
+    } catch (err) {
+      console.error("Summarize paper error:", err.message);
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  app.post("/papers/:id/notes", (req, res) => {
+    const { note_type, content } = req.body;
+    if (!content) return res.status(400).json({ error: "Note content is required" });
+    const result = paperDb.addNote(req.params.id, note_type || "general", content);
+    res.json(result);
+  });
+
+  app.post("/library/reindex", (_req, res) => {
+    const result = paperDb.scanPaperFolder();
+    res.json({ reindexed: true, ...result });
+  });
+
+  app.get("/tasks/:id", (req, res) => {
+    const db = paperDb.getDb();
+    const task = db.prepare("SELECT * FROM research_tasks WHERE id = ?").get(req.params.id);
+    if (!task) return res.status(404).json({ error: "Task not found" });
+    res.json(task);
+  });
+} catch (err) {
+  console.warn("Paper Library bridge not available:", err.message);
+}
+
+// ---- Bridge: Workspace / Project Manager ----
+try {
+  const workspace = require("./bridge/workspace");
+
+  app.get("/workspace/health", (_req, res) => res.json(workspace.workspaceHealth()));
+
+  app.get("/workspace/config", (_req, res) => res.json(workspace.workspaceConfig()));
+
+  app.get("/workspace/tree", (_req, res) => {
+    const tree = workspace.fileTree();
+    res.json(tree);
+  });
+
+  app.post("/workspace/read-file", (req, res) => {
+    const { path: filePath } = req.body || {};
+    if (!filePath) return res.status(400).json({ error: "path is required" });
+    const result = workspace.readFile(filePath);
+    if (result.error) return res.status(400).json(result);
+    res.json(result);
+  });
+
+  app.post("/workspace/write-file", (req, res) => {
+    const { path: filePath, content, overwrite, backup } = req.body || {};
+    if (!filePath || content === undefined) return res.status(400).json({ error: "path and content are required" });
+    const result = workspace.writeFile(filePath, content, { overwrite, backup });
+    if (result.error) return res.status(400).json(result);
+    res.json(result);
+  });
+
+  app.post("/workspace/generate-file", (req, res) => {
+    const { type, targetPath } = req.body || {};
+    if (!type || !targetPath) return res.status(400).json({ error: "type and targetPath are required" });
+    const content = `# ${type.replace(/_/g, " ")}\n\nGenerated at: ${new Date().toISOString()}\n\n`;
+    const result = workspace.writeFile(targetPath, content, { overwrite: false, backup: true });
+    if (result.error) return res.status(400).json(result);
+    res.json(result);
+  });
+
+  app.get("/workspace/memory", (_req, res) => {
+    res.json(workspace.getProjectMemory());
+  });
+
+  app.post("/workspace/memory/update", (req, res) => {
+    const { content } = req.body || {};
+    if (!content) return res.status(400).json({ error: "content is required" });
+    const result = workspace.writeFile("PROJECT_MEMORY.md", content, { overwrite: true, backup: true });
+    if (result.error) return res.status(400).json(result);
+    res.json(result);
+  });
+
+  app.get("/workspace/git/status", (_req, res) => {
+    res.json(workspace.getGitStatus());
+  });
+
+  app.get("/workspace/read-office", (_req, res) => {
+    const result = workspace.readOffice();
+    if (result.error) return res.status(404).json(result);
+    res.json(result);
+  });
+} catch (err) {
+  console.warn("Workspace bridge not available:", err.message);
+}
+
 // ---- SPA fallthrough ----
 app.get("*", (_req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
@@ -357,9 +555,14 @@ app.use((_req, res) => {
 });
 
 // ---- Start ----
-app.listen(PORT, () => {
-  console.log(`Auto Research Web server running at http://localhost:${PORT}`);
-  console.log(`LLM provider: ${LLM_CONFIG.provider} (${isLLMConfigured() ? "configured" : "NOT configured - set LLM_API_KEY in .env"})`);
+const bridgePort = parseInt(process.env.AUTO_RESEARCH_BRIDGE_PORT, 10) || parseInt(process.env.PORT, 10) || 8765;
+const bridgeHost = process.env.AUTO_RESEARCH_BRIDGE_HOST || process.env.HOST || "127.0.0.1";
+app.listen(bridgePort, bridgeHost, () => {
+  console.log(`=== Auto Research Web - Local Research Bridge v${BRIDGE_VERSION} ===`);
+  console.log(`Bridge running at http://${bridgeHost}:${bridgePort}`);
+  console.log(`Health: http://${bridgeHost}:${bridgePort}/health`);
+  console.log(`LLM provider: ${LLM_CONFIG.provider} (${isLLMConfigured() ? "configured" : "NOT configured"})`);
   console.log(`Model: ${LLM_CONFIG.model}`);
-  console.log(`Anthropic: ${LLM_CONFIG.provider === "anthropic" ? "native /v1/messages" : "OpenAI-compatible /v1/chat/completions"}`);
+  console.log(`Project root: ${process.env.AUTO_RESEARCH_PROJECT_ROOT || __dirname}`);
+  console.log(`Paper dir: ${process.env.AUTO_RESEARCH_PAPER_DIR || "not set"}`);
 });

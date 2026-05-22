@@ -1223,3 +1223,72 @@ input, select {
   .mode-list li { flex-direction: column; gap: 2px; }
   .agent-list, .rubric-dimensions { grid-template-columns: 1fr; }
 }
+
+/* ===== Bridge Status Bar ===== */
+.bridge-status-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.bridge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.bridge-dot-online {
+  background: #4caf50;
+  box-shadow: 0 0 4px rgba(76,175,80,0.5);
+}
+.bridge-dot-offline {
+  background: #ccc;
+}
+
+/* ===== Runtime Mode Selector ===== */
+.runtime-mode-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.runtime-option {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.runtime-option:hover {
+  border-color: var(--accent);
+}
+.runtime-active {
+  border-color: var(--accent);
+  background: #fef7f2;
+}
+.runtime-option input[type="radio"] {
+  margin-right: 8px;
+}
+.runtime-option strong {
+  font-size: 0.9rem;
+}
+.runtime-option span {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+/* ===== Paper Search Item ===== */
+.paper-search-item {
+  transition: background 0.15s;
+}
+.paper-search-item:hover {
+  background: var(--bg);
+}
+}
