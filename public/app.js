@@ -162,6 +162,114 @@ Then run: npm start`,
     generateClaude: "Generate Claude Code Instruction",
     generateCodex: "Generate Codex Review Instruction",
     moreComing: "More features coming soon.",
+
+    // Page eyebrow + title + description
+    collectorEyebrow: "collector", collectorTitle: "Paper Collector",
+    collectorDesc: "Search and import papers by topic, DOI, URL, arXiv ID, or manual entry.",
+    summarizerEyebrow: "summarizer", summarizerTitle: "Paper Summarizer",
+    summarizerDesc: "Submit a paper for structured AI summarization. Extracts contribution, method, experiments, results, limitations, key claims, and citation candidates.",
+    researchEyebrow: "deep research", researchTitle: "Deep Research",
+    researchDesc: "Multi-agent research investigation with 13 specialized agents covering question refinement, search strategy, literature retrieval, quality assessment, data extraction, synthesis, bias checking, and source verification.",
+    ideasEyebrow: "idea generator", ideasTitle: "Idea Generator",
+    ideasDesc: "Generate research gaps, possible ideas, rank by novelty/feasibility/risk/resource/contribution, create experiment plans, and draft paper titles and hypotheses.",
+    writerEyebrow: "paper writer", writerTitle: "Academic Paper Writer",
+    writerDesc: "12-agent paper writing pipeline with style calibration, writing quality check, LaTeX hardening, visualization, revision coaching, citation conversion, and disclosure support.",
+    reviewerEyebrow: "reviewer", reviewerTitle: "Academic Paper Reviewer",
+    reviewerDesc: "7-agent multi-perspective peer review simulating a 5-person editorial board. 0-100 quality rubric with anti-sycophancy mechanism.",
+    pipelineEyebrow: "pipeline", pipelineTitle: "Academic Pipeline Orchestrator",
+    pipelineDesc: "10-stage pipeline from RESEARCH through FINALIZE. Mandatory integrity gates at stages 2.5 and 4.5.",
+    citationEyebrow: "citation tools", citationTitle: "Citation & Integrity Tools",
+    citationDesc: "Citation format conversion, claim-support checking, BibTeX helper, and hallucination risk detection. Note: model-assisted verification is not a guarantee.",
+    exportEyebrow: "export", exportTitle: "Export Center",
+    exportDesc: "Export research results in Markdown, JSON, Plain Text, LaTeX, BibTeX. DOCX/PDF planned (requires Pandoc/Tectonic).",
+    settingsEyebrow: "configuration", settingsTitle: "API Configuration",
+    docsEyebrow: "documentation", docsTitle: "Docs & Usage Guide",
+    docsDesc: "How to set up, configure, and use each module of Auto Research Web.",
+
+    // Module card headings
+    inputHeading: "Input", modeHeading: "Mode",
+    researchTopicHeading: "Research Topic",
+    contentDraftHeading: "Content / Draft / Notes",
+    additionalOptions: "Additional Options",
+    paperToReviewHeading: "Paper to Review",
+    actionHeading: "Action",
+    contentToExport: "Content to Export",
+    selectPaperPrompt: "Select a paper from collection or paste text:",
+    pasteTextPlaceholder: "Or paste paper text / abstract here...",
+    researchTopicPlaceholder: "Enter your research topic or question...",
+    contextOptional: "Additional Context (optional)",
+    constraintsOptional: "Constraints (optional)",
+    ideasTopicPlaceholder: "e.g. diffusion policies for dexterous manipulation",
+    ideasContextPlaceholder: "Paste paper summaries, research notes, or constraints...",
+    ideasConstraintsPlaceholder: "e.g. limited compute, must use real robots, within 6 months",
+    writerContentPlaceholder: "Paste your research notes, draft, outline, or paper content...",
+    specialInstructions: "Special Instructions",
+    instructionsPlaceholder: "Any specific guidance...",
+    feedbackReviewerComments: "Feedback / Reviewer Comments",
+    feedbackPlaceholder: "Paste reviewer comments for revision mode...",
+    targetFormatLabel: "Target Format",
+    reviewerInputPlaceholder: "Paste the full paper text, draft, or sections to review...",
+    citationInputPlaceholder: "Paste text, citations, or paper content...",
+    exportContentPlaceholder: "Paste content to export...",
+    sourceFormat: "Source Format", targetFormat: "Target Format",
+
+    // Docs page sections
+    docsInstallation: "Installation",
+    docsApiConfig: "API Configuration",
+    docsModuleGuide: "Module Guide",
+    docsDeployment: "Deployment",
+    docsSecurity: "Security",
+    docsLimitations: "Known Limitations",
+    docsLicense: "License & Attribution",
+    docsInstallCode: `git clone https://github.com/Jiang-524/auto-research-web.git
+cd auto-research-web
+npm install
+cp .env.example .env
+# Edit .env with your LLM_API_KEY
+npm start`,
+    docsInstallNote: "Open http://localhost:3000 in your browser.",
+    docsDeploymentText: "GitHub Pages (static): Push the repository. Non-LLM features work without a backend. Full (with LLM): Deploy the Express server to Railway, Render, Fly.io, or a VPS. Set environment variables on the host.",
+    docsSecurityText1: "API keys are stored only in .env on the backend server",
+    docsSecurityText2: "The frontend only calls /api/* routes",
+    docsSecurityText3: ".env is in .gitignore and never committed",
+    docsSecurityText4: "Always use the backend server (npm start) for LLM features",
+    docsSecurityText5: "All LLM results: model-assisted output must be verified by a human",
+    docsLimitation1: "arXiv/Semantic Scholar real-time search not yet integrated into web UI (Python script in scripts/)",
+    docsLimitation2: "DOCX export requires Pandoc; PDF requires Tectonic/LaTeX",
+    docsLimitation3: "No automated test framework yet",
+    docsLimitation4: "GitHub Pages cannot run Express backend; LLM features require deployed backend",
+    docsLicenseText: "Licensed under CC BY-NC 4.0. Based on Academic Research Skills by Cheng-I Wu, also CC BY-NC 4.0. Visual web implementation inspired by ARS workflow concepts - not the original ARS project.",
+    docsModuleDashboard: "Overview, metrics, quick actions, API status. Click any feature card to jump to that tool.",
+    docsModuleCollector: "Search local corpus by keyword. Add papers manually with title, authors, year, venue, URL, topics, abstract.",
+    docsModuleSummarizer: "Select a paper or paste text. LLM extracts: contribution, method, experiments, results, limitations, key claims, citation candidates.",
+    docsModuleResearch: "7 modes: full, quick, systematic-review (PRISMA), socratic, fact-check, lit-review, research review. Each mode has a distinct LLM prompt.",
+    docsModuleIdeas: "Generate research gaps, ranked ideas (novelty/feasibility/risk/resources/contribution), experiment plans, paper titles, hypotheses.",
+    docsModuleWriter: "10 modes: full draft, plan, outline, abstract, lit-review, revision, revision coach, format conversion, citation check, AI disclosure.",
+    docsModuleReviewer: "6 modes with 0-100 rubric. Simulates editorial board with Editor-in-Chief, methodology, domain, interdisciplinary reviewers, and Devil's Advocate.",
+    docsModulePipeline: "10-stage orchestrator with mandatory integrity gates at 2.5 and 4.5. Entry modes: full pipeline, paper review, reviewer comments, resume from passport.",
+    docsModuleCitation: "Format conversion (APA/MLA/IEEE/Chicago/Vancouver/BibTeX), claim-support check, BibTeX helper, hallucination risk detection.",
+    docsModuleExport: "Export as Markdown, JSON, Plain Text, LaTeX, BibTeX. DOCX/PDF planned (requires Pandoc/Tectonic).",
+
+    // Misc UI
+    reviewerRubricTitle: "Review Rubric (0-100)",
+    workflowDataError: "Workflow data not loaded.",
+    openTool: "Open Tool",
+    openPaper: "Open Paper", downloadPdf: "Download PDF",
+    unbookmark: "Unbookmark", bookmark: "Bookmark",
+    markVerification: "Mark for Verification", clearVerification: "Clear Verification",
+    noMatches: "No papers match the current filters.",
+    noPapersCollection: "No papers in collection yet. Search or add papers above.",
+    importArxivPlanned: "Import from arXiv (API planned)",
+    adaptFromArs: "Adapted from academic-research-skills",
+    sidebarEyebrow: "auto research",
+    arsAttribution: "Based on ARS by",
+    researchWorkflowLabel: "Click Pipeline for the full 10-stage view.",
+    collectorTitle2: "My Collection",
+    foundPapersPrefix: "Found papers in local corpus:",
+    noMatchesArxiv: 'No matches in local corpus.',
+    reviewerRubricNote: "Model-assisted verification is not a guarantee. Always independently verify critical citations.",
+    cloudApiConfigNote: "API Configuration for Cloud API mode.",
+    personalHybridNote: "Configure local bridge endpoint and paths.",
   },
   zh: {
     dashboard: "仪表盘", collector: "论文收集器", summarizer: "论文总结器",
@@ -284,6 +392,113 @@ DEFAULT_MAX_TOKENS=8192
     generateClaude: "生成 Claude Code 指令",
     generateCodex: "生成 Codex 审稿指令",
     moreComing: "更多功能即将推出。",
+
+    // Page eyebrow + title + description
+    collectorEyebrow: "收集器", collectorTitle: "论文收集器",
+    collectorDesc: "按主题、DOI、URL、arXiv ID或手动元数据搜索和导入论文。",
+    summarizerEyebrow: "总结器", summarizerTitle: "论文总结器",
+    summarizerDesc: "提交论文进行结构化AI总结。提取贡献、方法、实验、结果、局限性、关键声明和引用候选。",
+    researchEyebrow: "深度研究", researchTitle: "深度研究",
+    researchDesc: "13个专业智能体的多智能体研究调查，涵盖问题细化、搜索策略、文献检索、质量评估、数据提取、综合、偏差检查和来源验证。",
+    ideasEyebrow: "思路生成", ideasTitle: "思路生成器",
+    ideasDesc: "生成研究空白、可能的想法，按新颖性/可行性/风险/资源/贡献排名，创建实验计划，起草论文标题和假设。",
+    writerEyebrow: "论文写作", writerTitle: "学术论文写作器",
+    writerDesc: "12智能体论文写作流水线，包含风格校准、写作质量检查、LaTeX加固、可视化、修改指导、引用转换和披露支持。",
+    reviewerEyebrow: "审稿", reviewerTitle: "学术论文审稿器",
+    reviewerDesc: "7智能体多视角同行评审，模拟5人编辑委员会。0-100质量评分标准，具备反谄媚机制。",
+    pipelineEyebrow: "流水线", pipelineTitle: "学术流水线编排器",
+    pipelineDesc: "从研究到最终定稿的10阶段流水线。第2.5和4.5阶段为强制性完整性检查关卡。",
+    citationEyebrow: "引文工具", citationTitle: "引文与完整性工具",
+    citationDesc: "引文格式转换、声明支持检查、BibTeX助手和幻觉风险检测。注意：模型辅助验证并非保证。",
+    exportEyebrow: "导出", exportTitle: "导出中心",
+    exportDesc: "以Markdown、JSON、纯文本、LaTeX、BibTeX格式导出研究成果。DOCX/PDF计划中（需要Pandoc/Tectonic）。",
+    settingsEyebrow: "配置", settingsTitle: "API配置",
+    docsEyebrow: "文档", docsTitle: "文档与使用指南",
+    docsDesc: "如何设置、配置和使用Auto Research Web的每个模块。",
+
+    // Module card headings
+    inputHeading: "输入", modeHeading: "模式",
+    researchTopicHeading: "研究主题",
+    contentDraftHeading: "内容 / 草稿 / 笔记",
+    additionalOptions: "附加选项",
+    paperToReviewHeading: "待审论文",
+    actionHeading: "操作",
+    contentToExport: "要导出的内容",
+    selectPaperPrompt: "从集合中选择论文或粘贴文本：",
+    pasteTextPlaceholder: "或在此粘贴论文文本/摘要...",
+    researchTopicPlaceholder: "输入您的研究主题或问题...",
+    contextOptional: "附加背景（可选）",
+    constraintsOptional: "约束条件（可选）",
+    ideasTopicPlaceholder: "例如：用于灵巧操作的扩散策略",
+    ideasContextPlaceholder: "粘贴论文摘要、研究笔记或约束条件...",
+    ideasConstraintsPlaceholder: "例如：有限计算资源，必须使用真实机器人，6个月内完成",
+    writerContentPlaceholder: "粘贴您的研究笔记、草稿、大纲或论文内容...",
+    specialInstructions: "特殊说明",
+    instructionsPlaceholder: "任何具体指导...",
+    feedbackReviewerComments: "反馈 / 审稿意见",
+    feedbackPlaceholder: "为修改模式粘贴审稿意见...",
+    targetFormatLabel: "目标格式",
+    reviewerInputPlaceholder: "粘贴完整的论文文本、草稿或要审阅的章节...",
+    citationInputPlaceholder: "粘贴文本、引文或论文内容...",
+    exportContentPlaceholder: "粘贴要导出的内容...",
+    sourceFormat: "源格式", targetFormat: "目标格式",
+
+    // Docs page sections
+    docsInstallation: "安装",
+    docsApiConfig: "API配置",
+    docsModuleGuide: "模块指南",
+    docsDeployment: "部署",
+    docsSecurity: "安全",
+    docsLimitations: "已知限制",
+    docsLicense: "许可与归属",
+    docsInstallCode: `git clone https://github.com/Jiang-524/auto-research-web.git
+cd auto-research-web
+npm install
+cp .env.example .env
+# 在.env中编辑您的LLM_API_KEY
+npm start`,
+    docsInstallNote: "在浏览器中打开 http://localhost:3000。",
+    docsDeploymentText: "GitHub Pages（静态）：推送仓库。非LLM功能无需后端即可工作。完整版（含LLM）：将Express服务器部署到Railway、Render、Fly.io或VPS。在主机上设置环境变量。",
+    docsSecurityText1: "API密钥仅存储在后端服务器的.env文件中",
+    docsSecurityText2: "前端仅调用/api/*路由",
+    docsSecurityText3: ".env在.gitignore中，永不提交",
+    docsSecurityText4: "LLM功能请始终使用后端服务器（npm start）",
+    docsSecurityText5: "所有LLM结果：模型辅助输出必须由人工验证",
+    docsLimitation1: "arXiv/Semantic Scholar实时搜索尚未集成到Web界面（scripts/中有Python脚本）",
+    docsLimitation2: "DOCX导出需要Pandoc；PDF需要Tectonic/LaTeX",
+    docsLimitation3: "尚未有自动化测试框架",
+    docsLimitation4: "GitHub Pages无法运行Express后端；LLM功能需要部署后端",
+    docsLicenseText: "基于CC BY-NC 4.0许可。基于Cheng-I Wu的Academic Research Skills，同样采用CC BY-NC 4.0许可。此为受ARS工作流概念启发的可视化Web实现——并非原始ARS项目。",
+    docsModuleDashboard: "概览、指标、快捷操作、API状态。点击任意功能卡片跳转到对应工具。",
+    docsModuleCollector: "按关键词搜索本地语料库。手动添加论文，包含标题、作者、年份、会议/期刊、URL、主题、摘要。",
+    docsModuleSummarizer: "选择论文或粘贴文本。LLM提取：贡献、方法、实验、结果、局限性、关键声明、引用候选。",
+    docsModuleResearch: "7种模式：完整、快速、系统综述（PRISMA）、苏格拉底式、事实核查、文献综述、研究评审。每种模式有独特的LLM提示。",
+    docsModuleIdeas: "生成研究空白、排名想法（新颖性/可行性/风险/资源/贡献）、实验计划、论文标题、假设。",
+    docsModuleWriter: "10种模式：完整草稿、计划、仅大纲、仅摘要、文献综述、修改、修改指导、格式转换、引用检查、AI披露。",
+    docsModuleReviewer: "6种模式，0-100评分标准。模拟编辑委员会，包括主编、方法论、领域、跨学科审稿人和魔鬼代言人。",
+    docsModulePipeline: "10阶段编排器，第2.5和4.5阶段为强制性完整性关卡。入口模式：完整流水线、论文审稿、审稿意见、从护照恢复。",
+    docsModuleCitation: "格式转换（APA/MLA/IEEE/Chicago/Vancouver/BibTeX）、声明支持检查、BibTeX助手、幻觉风险检测。",
+    docsModuleExport: "导出为Markdown、JSON、纯文本、LaTeX、BibTeX。DOCX/PDF计划中（需要Pandoc/Tectonic）。",
+
+    // Misc UI
+    reviewerRubricTitle: "审稿评分标准（0-100）",
+    workflowDataError: "工作流数据未加载。",
+    openTool: "打开工具", openPaper: "打开论文", downloadPdf: "下载PDF",
+    unbookmark: "取消收藏", bookmark: "收藏",
+    markVerification: "标记待验证", clearVerification: "清除验证",
+    noMatches: "没有论文匹配当前筛选条件。",
+    noPapersCollection: "集合中还没有论文。请在上方搜索或添加论文。",
+    importArxivPlanned: "从arXiv导入（API计划中）",
+    adaptFromArs: "改编自academic-research-skills",
+    sidebarEyebrow: "自动研究",
+    arsAttribution: "基于ARS",
+    researchWorkflowLabel: "点击流水线查看完整的10阶段视图。",
+    collectorTitle2: "我的集合",
+    foundPapersPrefix: "在本地语料库中找到论文：",
+    noMatchesArxiv: "本地语料库中无匹配。",
+    reviewerRubricNote: "模型辅助验证并非保证。请始终独立验证关键引用。",
+    cloudApiConfigNote: "云端API模式的API配置。",
+    personalHybridNote: "配置本地桥接端点和路径。",
   }
 };
 
@@ -570,24 +785,24 @@ function renderDashboard(c) {
 function renderCollector(c) {
   c.innerHTML = `
     <div class="page-header">
-      <div><p class="eyebrow">collector</p><h2>Paper Collector</h2></div>
+      <div><p class="eyebrow">${t("collectorEyebrow")}</p><h2>${t("collectorTitle")}</h2></div>
       ${statusBadge(STATUS.IMPLEMENTED)}
     </div>
-    <p class="page-desc">Search and import papers by topic, DOI, URL, arXiv ID, or manual entry.</p>
+    <p class="page-desc">${t("collectorDesc")}</p>
 
     <div class="module-card">
-      <h3>Search & Import</h3>
+      <h3>${t("searchImport")}</h3>
       <div class="input-row">
-        <input type="text" id="collectorInput" placeholder="Topic, DOI, arXiv ID, URL, or keywords..." class="input-full">
-        <button class="btn btn-primary" id="collectorSearchBtn">Search</button>
+        <input type="text" id="collectorInput" placeholder="${t("collectorSearchPlaceholder")}" class="input-full">
+        <button class="btn btn-primary" id="collectorSearchBtn">${t("search")}</button>
       </div>
       <p style="margin-top:8px;font-size:0.78rem;color:var(--muted)">
-        ${statusBadge(STATUS.PLANNED)} Real API search (arXiv, Semantic Scholar) requires backend integration. Currently searches local corpus.
+        ${statusBadge(STATUS.PLANNED)} ${t("realApiNote")}
       </p>
     </div>
 
     <div class="module-card">
-      <h3>Manual Entry</h3>
+      <h3>${t("manualEntry")}</h3>
       <div class="manual-entry-form" id="manualEntryForm">
         <div class="form-grid">
           <label>Title<input type="text" id="meTitle" class="input-full"></label>
@@ -603,8 +818,8 @@ function renderCollector(c) {
     </div>
 
     <div class="module-card">
-      <h3>My Collection <span style="font-weight:400;color:var(--muted);font-size:0.8rem">(${S.collections.length} papers)</span></h3>
-      <div id="collectionList">${S.collections.length ? S.collections.map(p => renderCollectionCard(p)).join("") : emptyBox("No papers in collection yet. Search or add papers above.")}</div>
+      <h3>${t("collectorTitle2")} <span style="font-weight:400;color:var(--muted);font-size:0.8rem">(${S.collections.length} papers)</span></h3>
+      <div id="collectionList">${S.collections.length ? S.collections.map(p => renderCollectionCard(p)).join("") : emptyBox(t("noPapersCollection"))}</div>
     </div>
   `;
 
@@ -685,20 +900,20 @@ function findPapers(query) {
 function renderSummarizer(c) {
   c.innerHTML = `
     <div class="page-header">
-      <div><p class="eyebrow">summarizer</p><h2>Paper Summarizer</h2></div>
+      <div><p class="eyebrow">${t("summarizerEyebrow")}</p><h2>${t("summarizerTitle")}</h2></div>
       ${statusBadge(STATUS.API_REQUIRED)}
     </div>
-    <p class="page-desc">Submit a paper (text, abstract, or metadata) for structured AI summarization. Extracts contribution, method, experiments, results, limitations, key claims, and citation candidates.</p>
+    <p class="page-desc">${t("summarizerDesc")}</p>
 
     <div class="module-card">
-      <h3>Input</h3>
-      <label style="margin-bottom:6px;display:block">Select a paper from collection or paste text:</label>
+      <h3>${t("inputHeading")}</h3>
+      <label style="margin-bottom:6px;display:block">${t("selectPaperPrompt")}</label>
       <select id="summarizerPaperSelect" class="input-full" style="margin-bottom:8px">
         <option value="">-- Select from collection --</option>
         ${S.collections.map(p => `<option value="${p.id}">${escapeHtml(p.title)}</option>`).join("")}
         ${S.papers.map(p => `<option value="${p.id}">${escapeHtml(p.title)} (corpus)</option>`).join("")}
       </select>
-      <textarea id="summarizerInput" rows="8" class="input-full" placeholder="Or paste paper text / abstract here..."></textarea>
+      <textarea id="summarizerInput" rows="8" class="input-full" placeholder="${t("pasteTextPlaceholder")}"></textarea>
       <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
         <button class="btn btn-primary" id="summarizerRunBtn">Summarize</button>
         <span id="summarizerStatus"></span>
@@ -759,18 +974,18 @@ function renderResearch(c) {
 
   c.innerHTML = `
     <div class="page-header">
-      <div><p class="eyebrow">deep research</p><h2>Deep Research</h2></div>
+      <div><p class="eyebrow">${t("researchEyebrow")}</p><h2>${t("researchTitle")}</h2></div>
       ${statusBadge(STATUS.API_REQUIRED)}
     </div>
-    <p class="page-desc">Multi-agent research investigation. 13 specialized agents cover question refinement, search strategy, literature retrieval, deduplication, screening, quality assessment, data extraction, synthesis, bias checking, and source verification.</p>
+    <p class="page-desc">${t("researchDesc")}</p>
 
     <div class="module-card">
-      <h3>Research Topic</h3>
-      <input type="text" id="researchTopic" class="input-full" placeholder="Enter your research topic or question...">
+      <h3>${t("researchTopicHeading")}</h3>
+      <input type="text" id="researchTopic" class="input-full" placeholder="${t("researchTopicPlaceholder")}">
     </div>
 
     <div class="module-card">
-      <h3>Mode</h3>
+      <h3>${t("modeHeading")}</h3>
       <div class="mode-grid">
         ${modes.map(m => `
           <label class="mode-card" id="mode-card-${m.id}">
@@ -833,19 +1048,19 @@ function renderResearch(c) {
 function renderIdeas(c) {
   c.innerHTML = `
     <div class="page-header">
-      <div><p class="eyebrow">idea generator</p><h2>Idea Generator</h2></div>
+      <div><p class="eyebrow">${t("ideasEyebrow")}</p><h2>${t("ideasTitle")}</h2></div>
       ${statusBadge(STATUS.API_REQUIRED)}
     </div>
-    <p class="page-desc">Generate research gaps, possible ideas, rank by novelty/feasibility/risk/resource/contribution, create experiment plans, and draft paper titles and hypotheses.</p>
+    <p class="page-desc">${t("ideasDesc")}</p>
 
     <div class="module-card">
-      <h3>Research Context</h3>
-      <label>Topic / Research Direction</label>
-      <input type="text" id="ideasTopic" class="input-full" placeholder="e.g. diffusion policies for dexterous manipulation">
-      <label style="margin-top:8px">Additional Context (optional)</label>
-      <textarea id="ideasContext" rows="4" class="input-full" placeholder="Paste paper summaries, research notes, or constraints..."></textarea>
-      <label style="margin-top:8px">Constraints (optional)</label>
-      <input type="text" id="ideasConstraints" class="input-full" placeholder="e.g. limited compute, must use real robots, within 6 months">
+      <h3>${t("researchTopicHeading")}</h3>
+      <label>${t("researchTopicHeading")}</label>
+      <input type="text" id="ideasTopic" class="input-full" placeholder="${t("ideasTopicPlaceholder")}">
+      <label style="margin-top:8px">${t("contextOptional")}</label>
+      <textarea id="ideasContext" rows="4" class="input-full" placeholder="${t("ideasContextPlaceholder")}"></textarea>
+      <label style="margin-top:8px">${t("constraintsOptional")}</label>
+      <input type="text" id="ideasConstraints" class="input-full" placeholder="${t("ideasConstraintsPlaceholder")}">
     </div>
 
     <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
@@ -902,30 +1117,30 @@ function renderWriter(c) {
 
   c.innerHTML = `
     <div class="page-header">
-      <div><p class="eyebrow">paper writer</p><h2>Academic Paper Writer</h2></div>
+      <div><p class="eyebrow">${t("writerEyebrow")}</p><h2>${t("writerTitle")}</h2></div>
       ${statusBadge(STATUS.API_REQUIRED)}
     </div>
-    <p class="page-desc">12-agent paper writing pipeline with style calibration, writing quality check, LaTeX hardening, visualization, revision coaching, citation conversion, and disclosure support.</p>
+    <p class="page-desc">${t("writerDesc")}</p>
 
     <div class="module-card">
-      <h3>Content / Draft / Notes</h3>
-      <textarea id="writerContent" rows="10" class="input-full" placeholder="Paste your research notes, draft, outline, or paper content..."></textarea>
+      <h3>${t("contentDraftHeading")}</h3>
+      <textarea id="writerContent" rows="10" class="input-full" placeholder="${t("writerContentPlaceholder")}"></textarea>
     </div>
 
     <div class="module-card">
-      <h3>Mode</h3>
+      <h3>${t("modeHeading")}</h3>
       <select id="writerMode" class="input-full">
         ${modes.map(m => `<option value="${m.id}">${m.label} — ${m.desc}</option>`).join("")}
       </select>
     </div>
 
     <div class="module-card" id="writerExtraFields" style="display:none">
-      <h3>Additional Options</h3>
-      <label>Special Instructions</label>
-      <input type="text" id="writerInstructions" class="input-full" placeholder="Any specific guidance...">
-      <label style="margin-top:8px" id="writerFeedbackLabel" style="display:none">Feedback / Reviewer Comments</label>
-      <textarea id="writerFeedback" rows="4" class="input-full" placeholder="Paste reviewer comments for revision mode..."></textarea>
-      <label style="margin-top:8px" id="writerFormatLabel" style="display:none">Target Format</label>
+      <h3>${t("additionalOptions")}</h3>
+      <label>${t("specialInstructions")}</label>
+      <input type="text" id="writerInstructions" class="input-full" placeholder="${t("instructionsPlaceholder")}">
+      <label style="margin-top:8px" id="writerFeedbackLabel" style="display:none">${t("feedbackReviewerComments")}</label>
+      <textarea id="writerFeedback" rows="4" class="input-full" placeholder="${t("feedbackPlaceholder")}"></textarea>
+      <label style="margin-top:8px" id="writerFormatLabel" style="display:none">${t("targetFormatLabel")}</label>
       <select id="writerTargetFormat" class="input-full">
         <option value="markdown">Markdown</option>
         <option value="latex">LaTeX</option>
@@ -999,10 +1214,10 @@ function renderReviewer(c) {
 
   c.innerHTML = `
     <div class="page-header">
-      <div><p class="eyebrow">reviewer</p><h2>Academic Paper Reviewer</h2></div>
+      <div><p class="eyebrow">${t("reviewerEyebrow")}</p><h2>${t("reviewerTitle")}</h2></div>
       ${statusBadge(STATUS.API_REQUIRED)}
     </div>
-    <p class="page-desc">7-agent multi-perspective peer review simulating a 5-person editorial board: Editor-in-Chief, R1 Methodology, R2 Domain Expert, R3 Interdisciplinary, Devil's Advocate. 0-100 quality rubric with anti-sycophancy mechanism.</p>
+    <p class="page-desc">${t("reviewerDesc")}</p>
 
     <div class="review-rubric-mini">
       <div class="rubric-item rubric-accept"><strong>80-100</strong> Accept</div>
@@ -1012,12 +1227,12 @@ function renderReviewer(c) {
     </div>
 
     <div class="module-card">
-      <h3>Paper to Review</h3>
-      <textarea id="reviewerInput" rows="12" class="input-full" placeholder="Paste the full paper text, draft, or sections to review..."></textarea>
+      <h3>${t("paperToReviewHeading")}</h3>
+      <textarea id="reviewerInput" rows="12" class="input-full" placeholder="${t("reviewerInputPlaceholder")}"></textarea>
     </div>
 
     <div class="module-card">
-      <h3>Mode</h3>
+      <h3>${t("modeHeading")}</h3>
       <select id="reviewerMode" class="input-full">
         ${modes.map(m => `<option value="${m.id}">${m.label} — ${m.desc}</option>`).join("")}
       </select>
@@ -1062,16 +1277,16 @@ function renderReviewer(c) {
 // ---- Pipeline ----
 function renderPipeline(c) {
   if (!S.workflows || !S.workflows.pipeline) {
-    c.innerHTML = `<div class="page-header"><h2>Pipeline</h2></div>${emptyBox("Workflow data not loaded.")}`;
+    c.innerHTML = `<div class="page-header"><h2>${t("pipeline")}</h2></div>${emptyBox(t("workflowDataError"))}`;
     return;
   }
 
   c.innerHTML = `
     <div class="page-header">
-      <div><p class="eyebrow">pipeline</p><h2>Academic Pipeline Orchestrator</h2></div>
+      <div><p class="eyebrow">${t("pipelineEyebrow")}</p><h2>${t("pipelineTitle")}</h2></div>
       ${statusBadge(STATUS.IMPLEMENTED)}
     </div>
-    <p class="page-desc">10-stage pipeline from RESEARCH through FINALIZE. Mandatory integrity gates at stages 2.5 and 4.5. Each stage shows purpose, inputs, outputs, and links to the corresponding tool.</p>
+    <p class="page-desc">${t("pipelineDesc")}</p>
 
     <div class="module-card">
       <h3>${t("pipelineEntryTitle")}</h3>
@@ -1135,24 +1350,24 @@ function renderCitation(c) {
 
   c.innerHTML = `
     <div class="page-header">
-      <div><p class="eyebrow">citation tools</p><h2>Citation & Integrity Tools</h2></div>
+      <div><p class="eyebrow">${t("citationEyebrow")}</p><h2>${t("citationTitle")}</h2></div>
       ${statusBadge(STATUS.API_REQUIRED)}
     </div>
-    <p class="page-desc">Citation format conversion, claim-support checking, BibTeX helper, and hallucination risk detection. <strong>Note:</strong> Model-assisted verification is not a guarantee. Always independently verify critical citations.</p>
+    <p class="page-desc">${t("citationDesc")}</p>
 
     <div class="module-card">
-      <h3>Action</h3>
+      <h3>${t("actionHeading")}</h3>
       <select id="citationAction" class="input-full">
         ${actions.map(a => `<option value="${a.id}">${a.label} — ${a.desc}</option>`).join("")}
       </select>
     </div>
 
     <div class="module-card">
-      <h3>Input</h3>
-      <textarea id="citationInput" rows="8" class="input-full" placeholder="Paste text, citations, or paper content..."></textarea>
+      <h3>${t("inputHeading")}</h3>
+      <textarea id="citationInput" rows="8" class="input-full" placeholder="${t("citationInputPlaceholder")}"></textarea>
       <div class="input-row" style="margin-top:8px" id="citationFormatRow" style="display:none">
-        <label>Source Format<select id="citationSourceFmt" class="input-full"><option value="apa">APA</option><option value="mla">MLA</option><option value="ieee">IEEE</option><option value="chicago">Chicago</option><option value="vancouver">Vancouver</option><option value="bibtex">BibTeX</option></select></label>
-        <label>Target Format<select id="citationTargetFmt" class="input-full"><option value="apa">APA</option><option value="mla">MLA</option><option value="ieee">IEEE</option><option value="chicago">Chicago</option><option value="vancouver">Vancouver</option><option value="bibtex">BibTeX</option></select></label>
+        <label>${t("sourceFormat")}<select id="citationSourceFmt" class="input-full"><option value="apa">APA</option><option value="mla">MLA</option><option value="ieee">IEEE</option><option value="chicago">Chicago</option><option value="vancouver">Vancouver</option><option value="bibtex">BibTeX</option></select></label>
+        <label>${t("targetFormat")}<select id="citationTargetFmt" class="input-full"><option value="apa">APA</option><option value="mla">MLA</option><option value="ieee">IEEE</option><option value="chicago">Chicago</option><option value="vancouver">Vancouver</option><option value="bibtex">BibTeX</option></select></label>
       </div>
     </div>
 
@@ -1203,14 +1418,14 @@ function renderCitation(c) {
 function renderExportCenter(c) {
   c.innerHTML = `
     <div class="page-header">
-      <div><p class="eyebrow">export</p><h2>Export Center</h2></div>
+      <div><p class="eyebrow">${t("exportEyebrow")}</p><h2>${t("exportTitle")}</h2></div>
       ${statusBadge(STATUS.IMPLEMENTED)}
     </div>
-    <p class="page-desc">Export research results, paper drafts, reviews, and summaries in multiple formats: Markdown, JSON, Plain Text, LaTeX, BibTeX. Server-side DOCX/PDF conversion not yet implemented.</p>
+    <p class="page-desc">${t("exportDesc")}</p>
 
     <div class="module-card">
-      <h3>Content to Export</h3>
-      <textarea id="exportContent" rows="10" class="input-full" placeholder="Paste content to export..."></textarea>
+      <h3>${t("contentToExport")}</h3>
+      <textarea id="exportContent" rows="10" class="input-full" placeholder="${t("exportContentPlaceholder")}"></textarea>
     </div>
 
     <div class="export-buttons" style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px">
@@ -1498,7 +1713,7 @@ function renderSettings(c) {
 
   c.innerHTML = `
     <div class="page-header">
-      <div><p class="eyebrow">configuration</p><h2>Settings</h2></div>
+      <div><p class="eyebrow">${t("settingsEyebrow")}</p><h2>${t("settingsTitle")}</h2></div>
     </div>
 
     <div class="module-card">
@@ -1669,24 +1884,19 @@ function renderSettings(c) {
 function renderDocs(c) {
   c.innerHTML = `
     <div class="page-header">
-      <div><p class="eyebrow">documentation</p><h2>Docs & Usage Guide</h2></div>
+      <div><p class="eyebrow">${t("docsEyebrow")}</p><h2>${t("docsTitle")}</h2></div>
       ${statusBadge(STATUS.IMPLEMENTED)}
     </div>
-    <p class="page-desc">How to set up, configure, and use each module of Auto Research Web.</p>
+    <p class="page-desc">${t("docsDesc")}</p>
 
     <div class="module-card">
-      <h3>Installation</h3>
-      <pre style="background:#f4f5f2;padding:14px;border-radius:7px;font-size:0.82rem;overflow-x:auto">git clone https://github.com/Jiang-524/auto-research-web.git
-cd auto-research-web
-npm install
-cp .env.example .env
-# Edit .env with your LLM_API_KEY
-npm start</pre>
-      <p style="margin-top:8px;font-size:0.82rem;color:var(--muted)">Open <strong>http://localhost:3000</strong> in your browser.</p>
+      <h3>${t("docsInstallation")}</h3>
+      <pre style="background:#f4f5f2;padding:14px;border-radius:7px;font-size:0.82rem;overflow-x:auto;white-space:pre-wrap">${t("docsInstallCode")}</pre>
+      <p style="margin-top:8px;font-size:0.82rem;color:var(--muted)">${t("docsInstallNote")}</p>
     </div>
 
     <div class="module-card">
-      <h3>API Configuration</h3>
+      <h3>${t("docsApiConfig")}</h3>
       <p style="font-size:0.84rem;line-height:1.6;margin-bottom:10px">API keys are configured in the <code>.env</code> file on the backend server and <strong>never exposed to the browser</strong>. See <code>.env.example</code> for the template.</p>
       <table class="format-table" style="font-size:0.8rem">
         <tr><td style="padding:6px 12px;font-weight:700">LLM_PROVIDER</td><td style="padding:6px 12px;color:var(--muted)">openai | anthropic | deepseek | openrouter</td></tr>
@@ -1698,45 +1908,44 @@ npm start</pre>
     </div>
 
     <div class="module-card">
-      <h3>Module Guide</h3>
+      <h3>${t("docsModuleGuide")}</h3>
       <div class="feature-grid">
-        <div class="feature-card"><strong>Dashboard</strong><p>Overview, metrics, quick actions, API status. Click any feature card to jump to that tool.</p>${statusBadge(STATUS.IMPLEMENTED)}</div>
-        <div class="feature-card"><strong>Paper Collector</strong><p>Search the local corpus by keyword. Add papers manually with title, authors, year, venue, URL, topics, abstract.</p>${statusBadge(STATUS.IMPLEMENTED)}</div>
-        <div class="feature-card"><strong>Paper Summarizer</strong><p>Select a paper or paste text. LLM extracts: contribution, method, experiments, results, limitations, key claims, citation candidates.</p>${statusBadge(STATUS.API_REQUIRED)}</div>
-        <div class="feature-card"><strong>Deep Research</strong><p>7 modes: full, quick, systematic-review (PRISMA), socratic, fact-check, lit-review, research review. Each mode has a distinct LLM prompt.</p>${statusBadge(STATUS.API_REQUIRED)}</div>
-        <div class="feature-card"><strong>Idea Generator</strong><p>Generate research gaps, ranked ideas (novelty/feasibility/risk/resources/contribution), experiment plans, paper titles, hypotheses.</p>${statusBadge(STATUS.API_REQUIRED)}</div>
-        <div class="feature-card"><strong>Paper Writer</strong><p>10 modes: full draft, plan, outline, abstract, lit-review, revision, revision coach, format conversion, citation check, AI disclosure.</p>${statusBadge(STATUS.API_REQUIRED)}</div>
-        <div class="feature-card"><strong>Paper Reviewer</strong><p>6 modes with 0-100 rubric: full, quick, guided, methodology-focus, re-review, calibration. Simulates editorial board with anti-sycophancy.</p>${statusBadge(STATUS.API_REQUIRED)}</div>
-        <div class="feature-card"><strong>Pipeline</strong><p>10-stage orchestrator. Entry modes: full pipeline, existing paper review, reviewer comments, resume from passport. Mandatory integrity gates at 2.5 and 4.5.</p>${statusBadge(STATUS.IMPLEMENTED)}</div>
-        <div class="feature-card"><strong>Citation Tools</strong><p>Format conversion (APA/MLA/IEEE/Chicago/Vancouver/BibTeX), claim-support check, BibTeX helper, hallucination risk detection.</p>${statusBadge(STATUS.API_REQUIRED)}</div>
-        <div class="feature-card"><strong>Export Center</strong><p>Export as Markdown, JSON, Plain Text, LaTeX, BibTeX. DOCX/PDF planned (requires Pandoc/Tectonic).</p>${statusBadge(STATUS.IMPLEMENTED)}</div>
+        <div class="feature-card"><strong>${t("dashboard")}</strong><p>${t("docsModuleDashboard")}</p>${statusBadge(STATUS.IMPLEMENTED)}</div>
+        <div class="feature-card"><strong>${t("collector")}</strong><p>${t("docsModuleCollector")}</p>${statusBadge(STATUS.IMPLEMENTED)}</div>
+        <div class="feature-card"><strong>${t("summarizer")}</strong><p>${t("docsModuleSummarizer")}</p>${statusBadge(STATUS.API_REQUIRED)}</div>
+        <div class="feature-card"><strong>${t("research")}</strong><p>${t("docsModuleResearch")}</p>${statusBadge(STATUS.API_REQUIRED)}</div>
+        <div class="feature-card"><strong>${t("ideas")}</strong><p>${t("docsModuleIdeas")}</p>${statusBadge(STATUS.API_REQUIRED)}</div>
+        <div class="feature-card"><strong>${t("writer")}</strong><p>${t("docsModuleWriter")}</p>${statusBadge(STATUS.API_REQUIRED)}</div>
+        <div class="feature-card"><strong>${t("reviewer")}</strong><p>${t("docsModuleReviewer")}</p>${statusBadge(STATUS.API_REQUIRED)}</div>
+        <div class="feature-card"><strong>${t("pipeline")}</strong><p>${t("docsModulePipeline")}</p>${statusBadge(STATUS.IMPLEMENTED)}</div>
+        <div class="feature-card"><strong>${t("citation")}</strong><p>${t("docsModuleCitation")}</p>${statusBadge(STATUS.API_REQUIRED)}</div>
+        <div class="feature-card"><strong>${t("export")}</strong><p>${t("docsModuleExport")}</p>${statusBadge(STATUS.IMPLEMENTED)}</div>
       </div>
     </div>
 
     <div class="module-card">
-      <h3>Deployment</h3>
-      <p style="font-size:0.84rem;line-height:1.6"><strong>GitHub Pages (static):</strong> Push the repository. Non-LLM features (Dashboard, Pipeline, Export, Paper Collector) work without a backend.<br><br>
-      <strong>Full (with LLM):</strong> Deploy the Express server to Railway, Render, Fly.io, or a VPS. Set environment variables on the host. Update <code>CFG.apiBase</code> in <code>public/app.js</code> if the backend is on a different domain.</p>
+      <h3>${t("docsDeployment")}</h3>
+      <p style="font-size:0.84rem;line-height:1.6">${t("docsDeploymentText")}</p>
     </div>
 
     <div class="module-card">
-      <h3>Security</h3>
+      <h3>${t("docsSecurity")}</h3>
       <ul style="font-size:0.84rem;color:var(--muted);line-height:1.8;padding-left:20px">
-        <li>API keys are stored only in <code>.env</code> on the backend server</li>
-        <li>The frontend only calls <code>/api/*</code> routes</li>
-        <li><code>.env</code> is in <code>.gitignore</code> and never committed</li>
-        <li>For local development, always use the backend server (<code>npm start</code>)</li>
-        <li>All LLM results include a warning: model-assisted output must be verified by a human</li>
+        <li>${t("docsSecurityText1")}</li>
+        <li>${t("docsSecurityText2")}</li>
+        <li>${t("docsSecurityText3")}</li>
+        <li>${t("docsSecurityText4")}</li>
+        <li>${t("docsSecurityText5")}</li>
       </ul>
     </div>
 
     <div class="module-card">
-      <h3>Known Limitations</h3>
+      <h3>${t("docsLimitations")}</h3>
       <ul style="font-size:0.84rem;color:var(--muted);line-height:1.8;padding-left:20px">
-        <li>arXiv/Semantic Scholar real-time search is not yet integrated into the web UI (Python fetch script exists in <code>scripts/</code>)</li>
-        <li>DOCX export requires Pandoc; PDF requires Tectonic/LaTeX</li>
-        <li>No automated test framework yet</li>
-        <li>GitHub Pages cannot run the Express backend; LLM features require a deployed backend</li>
+        <li>${t("docsLimitation1")}</li>
+        <li>${t("docsLimitation2")}</li>
+        <li>${t("docsLimitation3")}</li>
+        <li>${t("docsLimitation4")}</li>
       </ul>
     </div>
 
@@ -1745,8 +1954,8 @@ npm start</pre>
       <p style="font-size:0.84rem;line-height:1.6;margin-bottom:10px">${t("deepseekV4Desc")}</p>
       <pre style="background:#f4f5f2;padding:14px;border-radius:7px;font-size:0.8rem;overflow-x:auto;white-space:pre-wrap">${t("deepseekV4Config")}</pre>
 
-      <h3>License & Attribution</h3>
-      <p style="font-size:0.84rem;line-height:1.6">Licensed under <strong>CC BY-NC 4.0</strong>. Based on <a href="https://github.com/Imbad0202/academic-research-skills" target="_blank" rel="noreferrer" style="color:var(--green)">Academic Research Skills</a> by Cheng-I Wu, also CC BY-NC 4.0. This project is a visual, interactive web implementation inspired by the ARS workflow concepts. It is not the original ARS project.</p>
+      <h3>${t("docsLicense")}</h3>
+      <p style="font-size:0.84rem;line-height:1.6">${t("docsLicenseText")}</p>
     </div>
   `;
 }
@@ -1856,13 +2065,13 @@ function setupLayout() {
     <div class="app-layout">
       <aside class="sidebar">
         <div class="sidebar-brand">
-          <p class="eyebrow" style="margin-bottom:2px">auto research</p>
+          <p class="eyebrow" style="margin-bottom:2px">${t("sidebarEyebrow")}</p>
           <strong>ARW</strong>
         </div>
         <nav class="sidebar-nav"></nav>
         <div class="sidebar-footer">
           <button class="lang-toggle-btn" onclick="toggleLang()" title="Switch language" style="width:100%;margin-bottom:8px">中文</button>
-          <p style="font-size:0.68rem;color:var(--muted)">Based on ARS by<br>Cheng-I Wu</p>
+          <p style="font-size:0.68rem;color:var(--muted)">${t("arsAttribution")}<br>Cheng-I Wu</p>
           <a href="https://github.com/Imbad0202/academic-research-skills" target="_blank" rel="noreferrer" style="font-size:0.68rem;color:var(--green)">CC BY-NC 4.0</a>
         </div>
       </aside>
