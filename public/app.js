@@ -100,7 +100,7 @@ const T = {
 LLM_PROVIDER=deepseek
 LLM_API_KEY=your-deepseek-key
 LLM_MODEL=deepseek-v4-pro
-LLM_BASE_URL=https://api.deepseek.com/v1
+LLM_BASE_URL=https://api.deepseek.com
 
 # Optional: adjust temperature for academic tasks
 DEFAULT_TEMPERATURE=0.3
@@ -216,6 +216,12 @@ Then run: npm start`,
     // Docs page sections
     docsInstallation: "Installation",
     docsApiConfig: "API Configuration",
+    docsDualModelTitle: "Pro / Flash Dual-Model System",
+    docsProModelTitle: "Pro Model (deepseek-v4-pro)",
+    docsProModelDesc: "Used for deep thinking tasks: research, paper writing, peer review, idea generation, detailed summarization, claim verification, and hallucination checks. Higher temperature (0.3-0.4), larger context (8192 tokens).",
+    docsFlashModelTitle: "Flash Model (deepseek-v4-flash)",
+    docsFlashModelDesc: "Used for fast, low-cost tasks: paper search, rough reading, simple translation, citation format conversion, and BibTeX generation. Low temperature (0.1), smaller context (2048 tokens), faster and cheaper.",
+    docsDualModelNote: "Configure in .env: LLM_FLASH_MODEL, LLM_FLASH_TEMPERATURE, LLM_FLASH_MAX_TOKENS. The pro model uses LLM_MODEL, DEFAULT_TEMPERATURE, DEFAULT_MAX_TOKENS.",
     docsModuleGuide: "Module Guide",
     docsDeployment: "Deployment",
     docsSecurity: "Security",
@@ -330,7 +336,7 @@ npm start`,
 LLM_PROVIDER=deepseek
 LLM_API_KEY=您的deepseek密钥
 LLM_MODEL=deepseek-v4-pro
-LLM_BASE_URL=https://api.deepseek.com/v1
+LLM_BASE_URL=https://api.deepseek.com
 
 # 可选：为学术任务调整temperature
 DEFAULT_TEMPERATURE=0.3
@@ -446,6 +452,12 @@ DEFAULT_MAX_TOKENS=8192
     // Docs page sections
     docsInstallation: "安装",
     docsApiConfig: "API配置",
+    docsDualModelTitle: "Pro / Flash 双模型系统",
+    docsProModelTitle: "Pro 模型（deepseek-v4-pro）",
+    docsProModelDesc: "用于深度思考任务：研究、论文写作、同行评审、想法生成、详细总结、声明验证和幻觉检查。建议较高 temperature（0.3-0.4）和更大上下文（8192 tokens）。",
+    docsFlashModelTitle: "Flash 模型（deepseek-v4-flash）",
+    docsFlashModelDesc: "用于快速低成本任务：论文搜索、粗读、简单翻译、引用格式转换和 BibTeX 生成。低 temperature（0.1）、较小上下文（2048 tokens），更快更便宜。",
+    docsDualModelNote: "在 .env 中配置：LLM_FLASH_MODEL、LLM_FLASH_TEMPERATURE、LLM_FLASH_MAX_TOKENS。Pro 模型使用 LLM_MODEL、DEFAULT_TEMPERATURE、DEFAULT_MAX_TOKENS。",
     docsModuleGuide: "模块指南",
     docsDeployment: "部署",
     docsSecurity: "安全",
@@ -1870,7 +1882,7 @@ function renderSettings(c) {
           const status = await API.status();
           S.llmStatus = status;
           if (statusEl) statusEl.innerHTML = status.llmConfigured
-            ? `<span style="color:var(--green);font-weight:700">Connected — ${status.provider} / ${status.model}</span>`
+            ? `<div style="color:var(--green);font-weight:700">Connected — ${status.provider}</div><div style="font-size:0.78rem;color:var(--muted);margin-top:4px">Pro: ${status.proModel || status.model} (research/writing/review/ideas)<br>Flash: ${status.flashModel || "N/A"} (search/rough read/translate/format)</div>`
             : `<span style="color:var(--amber);font-weight:700">Not configured — set LLM_API_KEY in the backend .env file</span>`;
         } catch (err) {
           if (statusEl) statusEl.innerHTML = errorBox("Cannot reach API server. Is the backend running? (node server.js)");
@@ -1901,13 +1913,20 @@ function renderDocs(c) {
       <table class="format-table" style="font-size:0.8rem">
         <tr><td style="padding:6px 12px;font-weight:700">LLM_PROVIDER</td><td style="padding:6px 12px;color:var(--muted)">openai | anthropic | deepseek | openrouter</td></tr>
         <tr><td style="padding:6px 12px;font-weight:700">LLM_API_KEY</td><td style="padding:6px 12px;color:var(--muted)">Your provider API key (required)</td></tr>
-        <tr><td style="padding:6px 12px;font-weight:700">LLM_MODEL</td><td style="padding:6px 12px;color:var(--muted)">e.g. gpt-4o, claude-sonnet-4-6, deepseek-chat</td></tr>
+        <tr><td style="padding:6px 12px;font-weight:700">LLM_MODEL</td><td style="padding:6px 12px;color:var(--muted)">e.g. gpt-4o, claude-sonnet-4-6, deepseek-v4-pro</td></tr>
         <tr><td style="padding:6px 12px;font-weight:700">LLM_BASE_URL</td><td style="padding:6px 12px;color:var(--muted)">Provider API endpoint</td></tr>
         <tr><td style="padding:6px 12px;font-weight:700">PORT</td><td style="padding:6px 12px;color:var(--muted)">Server port (default: 3000)</td></tr>
       </table>
     </div>
 
     <div class="module-card">
+      <h3>${t("docsDualModelTitle")}</h3>
+      <div class="feature-grid" style="margin-bottom:12px">
+        <div class="feature-card"><strong>${t("docsProModelTitle")}</strong><p>${t("docsProModelDesc")}</p></div>
+        <div class="feature-card"><strong>${t("docsFlashModelTitle")}</strong><p>${t("docsFlashModelDesc")}</p></div>
+      </div>
+      <p style="font-size:0.78rem;color:var(--muted);margin-bottom:16px">${t("docsDualModelNote")}</p>
+
       <h3>${t("docsModuleGuide")}</h3>
       <div class="feature-grid">
         <div class="feature-card"><strong>${t("dashboard")}</strong><p>${t("docsModuleDashboard")}</p>${statusBadge(STATUS.IMPLEMENTED)}</div>

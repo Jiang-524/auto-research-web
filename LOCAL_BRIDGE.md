@@ -75,15 +75,15 @@ Local Outputs / Project Memory / Indexes
 | `AUTO_RESEARCH_BRIDGE_PORT` | Bridge server port | 8765 |
 | `AUTO_RESEARCH_BRIDGE_HOST` | Bridge listen host | 127.0.0.1 |
 | `AUTO_RESEARCH_ALLOWED_ORIGINS` | CORS origins (comma-separated) | localhost origins |
-| `AUTO_RESEARCH_PROJECT_ROOT` | Project root path | E:/ccProject/researchWeb |
+| `AUTO_RESEARCH_PROJECT_ROOT` | Project root path | /path/to/auto-research-web |
 | `AUTO_RESEARCH_WORKSPACE_ROOT` | Workspace root path | same as project root |
-| `AUTO_RESEARCH_PAPER_DIR` | Paper library folder | E:/paper |
+| `AUTO_RESEARCH_PAPER_DIR` | Paper library folder | /path/to/papers |
 | `AUTO_RESEARCH_DB_PATH` | SQLite database path | .../.auto-research/research.db |
 | `AUTO_RESEARCH_OUTPUT_DIR` | Generated output directory | .../.auto-research/outputs |
 | `AUTO_RESEARCH_INDEX_DIR` | Search index directory | .../.auto-research/index |
 | `AUTO_RESEARCH_LOG_DIR` | Log directory | .../.auto-research/logs |
 | `LLM_PROVIDER` | LLM provider (openai/anthropic/deepseek) | deepseek |
-| `LLM_MODEL` | Model name | deepseek-chat |
+| `LLM_MODEL` | Model name | deepseek-v4-pro |
 | `LLM_BASE_URL` | API base URL | https://api.deepseek.com |
 | `LLM_API_KEY` | API key (never exposed to frontend) | (required) |
 

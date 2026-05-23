@@ -49,7 +49,7 @@ cp .env.example .env
 LLM_PROVIDER=deepseek
 LLM_API_KEY=<your-deepseek-api-key>
 LLM_MODEL=deepseek-v4-pro
-LLM_BASE_URL=https://api.deepseek.com/v1
+LLM_BASE_URL=https://api.deepseek.com
 DEFAULT_TEMPERATURE=0.3
 DEFAULT_MAX_TOKENS=8192
 ```
@@ -58,7 +58,7 @@ DEFAULT_MAX_TOKENS=8192
 
 | 提供商 Provider | LLM_PROVIDER | 基础URL Base URL |
 |---|---|---|
-| DeepSeek V4 Pro (推荐) | `deepseek` | `https://api.deepseek.com/v1` |
+| DeepSeek V4 Pro (推荐) | `deepseek` | `https://api.deepseek.com` |
 | OpenAI (GPT-4o) | `openai` | `https://api.openai.com/v1` |
 | Anthropic (Claude) | `anthropic` | `https://api.anthropic.com/v1` |
 | OpenRouter | `openrouter` | `https://openrouter.ai/api/v1` |
