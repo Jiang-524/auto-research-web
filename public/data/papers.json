@@ -1,7 +1,166 @@
 {
-  "generatedAt": "2026-09-02T16:37:01.390642+00:00",
+  "generatedAt": "2026-09-03T04:36:27.960468+00:00",
   "source": "arXiv API",
   "papers": [
+    {
+      "id": "arxiv-2609-02653v1-f0835260cd",
+      "title": "HINT: Human-Intent Inception for Long-Horizon Robot Manipulation",
+      "authors": [
+        "Mingyu Mei",
+        "Haojie Xu",
+        "Shihao Jin",
+        "Zibo Dai",
+        "Qihao Cheng",
+        "Zhengrui Lv",
+        "Hongjie Fang",
+        "Shirun Tang"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publishedAt": "2026-09-02T14:26:30Z",
+      "fetchedAt": "2026-09-03T04:36:08.496616+00:00",
+      "topics": [
+        "VLA",
+        "dexterous manipulation",
+        "foundation models",
+        "robot manipulation"
+      ],
+      "summary": "Humans can perform complex manipulations given a simple intent through an overall instruction, while continuously adapting to evolving visual observations. However, current vision-language action (VLA) models and other action policies struggle to realize this high-level intelligent behavior under dense, evolving visual inputs and sparse language guidance.",
+      "url": "http://arxiv.org/abs/2609.02653v1",
+      "pdfUrl": "http://arxiv.org/pdf/2609.02653v1",
+      "summaryStatus": "abstract-derived; needs human verification"
+    },
+    {
+      "id": "arxiv-2609-02634v1-3897402129",
+      "title": "Latent Cluster Analysis for Vision-Language-Action Models",
+      "authors": [
+        "Theodor Wulff",
+        "Sergio Lanza",
+        "Tamara Bila",
+        "Angelo Cangelosi",
+        "Stefan Wermter",
+        "Igor Farkas"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publishedAt": "2026-09-02T14:10:47Z",
+      "fetchedAt": "2026-09-03T04:36:18.423964+00:00",
+      "topics": [
+        "VLA",
+        "diffusion",
+        "foundation models",
+        "reinforcement learning"
+      ],
+      "summary": "Vision-Language-Action (VLA) Models are increasingly used in robotics for their ability to ground language and perception into action, yet the internal representations driving their behaviour remain poorly understood. We propose LAVLA, a framework for latent cluster analysis of VLA models, and conduct a layer-wise study of the state-of-the-art GR00T N1.5 model, with particular focus on its action decoder.",
+      "url": "http://arxiv.org/abs/2609.02634v1",
+      "pdfUrl": "http://arxiv.org/pdf/2609.02634v1",
+      "summaryStatus": "abstract-derived; needs human verification"
+    },
+    {
+      "id": "arxiv-2609-02546v1-5445a9e7a4",
+      "title": "ZETA: A Controlled Study of Zero-Shot Cross-Embodiment VLA Transfer for Tabletop Manipulation",
+      "authors": [
+        "Mi Yan",
+        "Wenhao Zhang",
+        "Zhiqi Zhang",
+        "Yu Peng",
+        "Tangxinyu Wang",
+        "Lingfei Zhai",
+        "Jiayi Su",
+        "Shengliang Deng"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publishedAt": "2026-09-02T13:00:18Z",
+      "fetchedAt": "2026-09-03T04:36:18.424117+00:00",
+      "topics": [
+        "VLA",
+        "benchmark",
+        "dexterous manipulation",
+        "foundation models",
+        "reinforcement learning",
+        "robot manipulation"
+      ],
+      "summary": "Zero-shot generalization to unseen embodiments is important for generalizable vision-language-action (VLA) models as robot hardware evolves and task-specific data collection remains costly. However, a systematic understanding of this problem remains limited, in part because the literature lacks a unified zero-shot transfer definition and controlled evaluation settings that isolate embodiment changes from...",
+      "url": "http://arxiv.org/abs/2609.02546v1",
+      "pdfUrl": "http://arxiv.org/pdf/2609.02546v1",
+      "summaryStatus": "abstract-derived; needs human verification"
+    },
+    {
+      "id": "arxiv-2609-02341v1-57e71a5997",
+      "title": "Towards Zero-Shot Transfer Across Embodiments For Driving VLAs",
+      "authors": [
+        "Caio Azevedo",
+        "Stefano Sabatini",
+        "Sascha Hornauer",
+        "Fabien Moutarde"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publishedAt": "2026-09-02T09:17:54Z",
+      "fetchedAt": "2026-09-03T04:36:08.496832+00:00",
+      "topics": [
+        "VLA",
+        "benchmark",
+        "foundation models",
+        "robot manipulation"
+      ],
+      "summary": "Vision-Language-Action models (VLAs) have shown strong potential in autonomous driving by leveraging multimodal pretraining for instruction following, visual reasoning, and scene-level generalization. In robotic manipulation, scaling VLA fine-tuning across multiple robot setups--especially when unifying representations across embodiments--has been shown to improve in-dataset performance and cross-embodiment...",
+      "url": "http://arxiv.org/abs/2609.02341v1",
+      "pdfUrl": "http://arxiv.org/pdf/2609.02341v1",
+      "summaryStatus": "abstract-derived; needs human verification"
+    },
+    {
+      "id": "arxiv-2609-02020v1-27018d9ac2",
+      "title": "Real-Time Dynamics-Based Torque-Sampling MPPI for Compliant and Force Aware Manipulation",
+      "authors": [
+        "Euncheol Im",
+        "Taehyun Kim",
+        "Yonghwan Oh",
+        "Myotaeg Lim",
+        "Yisoo Lee"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publishedAt": "2026-09-02T02:46:57Z",
+      "fetchedAt": "2026-09-03T04:36:08.497014+00:00",
+      "topics": [
+        "dexterous manipulation",
+        "reinforcement learning",
+        "robot manipulation"
+      ],
+      "summary": "This study proposes a novel Model Predictive Path Integral (MPPI)-based task-space control framework. The proposed framework explicitly solves rigid-body dynamics within a real-time MPC formulation and enforces safety constraints, enabling accurate motion and force control that yields compliant behaviors for safe and effective physical interaction of robotic manipulators in unstructured environments.",
+      "url": "http://arxiv.org/abs/2609.02020v1",
+      "pdfUrl": "http://arxiv.org/pdf/2609.02020v1",
+      "summaryStatus": "abstract-derived; needs human verification"
+    },
+    {
+      "id": "arxiv-2609-01938v1-4d5cfb98e4",
+      "title": "One Demonstration, Many Objects: Generalizing Manipulation via Local Contact Geometry",
+      "authors": [
+        "Satvik Sharma",
+        "Samrat Sahoo",
+        "Huang Huang",
+        "Fei-Fei Li Jiajun Wu",
+        "Dorsa Sadigh",
+        "Jeannette Bohg"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publishedAt": "2026-09-01T23:04:35Z",
+      "fetchedAt": "2026-09-03T04:36:21.662677+00:00",
+      "topics": [
+        "dexterous manipulation",
+        "imitation learning",
+        "reinforcement learning",
+        "robot manipulation",
+        "sim-to-real"
+      ],
+      "summary": "Dexterous manipulation with multi-fingered robot hands promises human-level dexterity, but collecting large-scale dexterous robot hand data remains difficult. Learning from human demonstrations has emerged as a scalable alternative to robot teleoperation, providing strong priors on object interaction and contact strategies.",
+      "url": "http://arxiv.org/abs/2609.01938v1",
+      "pdfUrl": "http://arxiv.org/pdf/2609.01938v1",
+      "summaryStatus": "abstract-derived; needs human verification"
+    },
     {
       "id": "arxiv-2609-01596v1-cb16465856",
       "title": "Facet-0: A Robotic Foundation Model for Contact-Rich Precise Manipulation",
@@ -18,7 +177,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-09-01T17:58:07Z",
-      "fetchedAt": "2026-09-02T16:36:36.480140+00:00",
+      "fetchedAt": "2026-09-03T04:36:11.782302+00:00",
       "topics": [
         "foundation models",
         "reinforcement learning",
@@ -40,7 +199,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-09-01T15:57:26Z",
-      "fetchedAt": "2026-09-02T16:36:39.770178+00:00",
+      "fetchedAt": "2026-09-03T04:36:15.153741+00:00",
       "topics": [
         "dexterous manipulation",
         "imitation learning",
@@ -61,7 +220,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-09-01T15:34:57Z",
-      "fetchedAt": "2026-09-02T16:36:36.480293+00:00",
+      "fetchedAt": "2026-09-03T04:36:11.782454+00:00",
       "topics": [
         "reinforcement learning",
         "sim-to-real"
@@ -87,7 +246,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-09-01T15:27:43Z",
-      "fetchedAt": "2026-09-02T16:36:43.109567+00:00",
+      "fetchedAt": "2026-09-03T04:36:18.424453+00:00",
       "topics": [
         "VLA",
         "benchmark",
@@ -114,7 +273,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-09-01T14:14:47Z",
-      "fetchedAt": "2026-09-02T16:36:43.109784+00:00",
+      "fetchedAt": "2026-09-03T04:36:18.424585+00:00",
       "topics": [
         "VLA",
         "foundation models",
@@ -135,7 +294,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-09-01T13:19:05Z",
-      "fetchedAt": "2026-09-02T16:36:43.109976+00:00",
+      "fetchedAt": "2026-09-03T04:36:18.424739+00:00",
       "topics": [
         "VLA",
         "foundation models",
@@ -158,7 +317,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-09-01T13:13:54Z",
-      "fetchedAt": "2026-09-02T16:36:33.198947+00:00",
+      "fetchedAt": "2026-09-03T04:36:08.497152+00:00",
       "topics": [
         "robot manipulation"
       ],
@@ -180,7 +339,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-09-01T08:38:16Z",
-      "fetchedAt": "2026-09-02T16:36:43.110281+00:00",
+      "fetchedAt": "2026-09-03T04:36:18.425011+00:00",
       "topics": [
         "VLA",
         "foundation models",
@@ -207,7 +366,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-09-01T08:37:31Z",
-      "fetchedAt": "2026-09-02T16:36:33.199138+00:00",
+      "fetchedAt": "2026-09-03T04:36:08.497282+00:00",
       "topics": [
         "benchmark",
         "robot manipulation"
@@ -232,7 +391,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-09-01T06:00:33Z",
-      "fetchedAt": "2026-09-02T16:36:36.480476+00:00",
+      "fetchedAt": "2026-09-03T04:36:11.782625+00:00",
       "topics": [
         "reinforcement learning",
         "robot manipulation",
@@ -257,7 +416,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-09-01T03:53:38Z",
-      "fetchedAt": "2026-09-02T16:36:36.480601+00:00",
+      "fetchedAt": "2026-09-03T04:36:11.782742+00:00",
       "topics": [
         "diffusion",
         "reinforcement learning"
@@ -283,7 +442,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-09-01T03:20:24Z",
-      "fetchedAt": "2026-09-02T16:36:33.199298+00:00",
+      "fetchedAt": "2026-09-03T04:36:08.497414+00:00",
       "topics": [
         "benchmark",
         "reinforcement learning",
@@ -310,7 +469,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-31T18:09:52Z",
-      "fetchedAt": "2026-09-02T16:36:33.199463+00:00",
+      "fetchedAt": "2026-09-03T04:36:08.497560+00:00",
       "topics": [
         "benchmark",
         "reinforcement learning",
@@ -332,7 +491,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-31T15:42:20Z",
-      "fetchedAt": "2026-09-02T16:36:33.199616+00:00",
+      "fetchedAt": "2026-09-03T04:36:08.497700+00:00",
       "topics": [
         "dexterous manipulation",
         "robot manipulation"
@@ -358,7 +517,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-31T15:08:53Z",
-      "fetchedAt": "2026-09-02T16:36:36.480801+00:00",
+      "fetchedAt": "2026-09-03T04:36:11.782919+00:00",
       "topics": [
         "benchmark",
         "foundation models",
@@ -367,6 +526,32 @@
       "summary": "Embodied navigation requires agents to translate heterogeneous goals and visual observations into actions across tasks, environments, and robot embodiments. Modern vision-language models (VLMs) already encode spatial priors for visual grounding, spatial reasoning, and pointing, but these capabilities are rarely elicited directly for robot control.",
       "url": "http://arxiv.org/abs/2608.30935v1",
       "pdfUrl": "http://arxiv.org/pdf/2608.30935v1",
+      "summaryStatus": "abstract-derived; needs human verification"
+    },
+    {
+      "id": "arxiv-2608-30821v1-ba2b4b8be3",
+      "title": "Lucida: Parse, Generate, and Place for Composable Real-to-Sim Scene Modeling",
+      "authors": [
+        "Minghan Qin",
+        "Yuang Wang",
+        "Xiuyu Yang",
+        "Yushi Long",
+        "Yujian Zhang",
+        "Ruihuan Wang",
+        "Kai Ye",
+        "Yangang Zhang"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publishedAt": "2026-08-31T14:03:20Z",
+      "fetchedAt": "2026-09-03T04:36:24.958587+00:00",
+      "topics": [
+        "embodied AI",
+        "robot manipulation"
+      ],
+      "summary": "Composable scene modeling aims to recover a real indoor scene as complete, editable object assets arranged as observed, giving robot simulation and embodied AI a simulation-ready replica of the real environment whose objects can be manipulated individually. Existing pipelines decompose the task into three steps---parse the observations into instances, generate an asset for each, and place each asset back---but...",
+      "url": "http://arxiv.org/abs/2608.30821v1",
+      "pdfUrl": "http://arxiv.org/pdf/2608.30821v1",
       "summaryStatus": "abstract-derived; needs human verification"
     },
     {
@@ -382,7 +567,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-31T13:35:00Z",
-      "fetchedAt": "2026-09-02T16:36:36.480957+00:00",
+      "fetchedAt": "2026-09-03T04:36:11.783056+00:00",
       "topics": [
         "reinforcement learning",
         "robot manipulation",
@@ -406,7 +591,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-31T13:30:06Z",
-      "fetchedAt": "2026-09-02T16:36:33.199750+00:00",
+      "fetchedAt": "2026-09-03T04:36:08.497840+00:00",
       "topics": [
         "reinforcement learning",
         "robot manipulation"
@@ -430,7 +615,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-31T11:47:29Z",
-      "fetchedAt": "2026-09-02T16:36:43.110424+00:00",
+      "fetchedAt": "2026-09-03T04:36:18.425131+00:00",
       "topics": [
         "VLA",
         "foundation models",
@@ -458,7 +643,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-31T10:03:48Z",
-      "fetchedAt": "2026-09-02T16:36:43.110576+00:00",
+      "fetchedAt": "2026-09-03T04:36:18.425262+00:00",
       "topics": [
         "VLA",
         "benchmark",
@@ -472,12 +657,12 @@
       "summaryStatus": "abstract-derived; needs human verification"
     },
     {
-      "id": "arxiv-2608-30378v1-f3cd16836d",
+      "id": "arxiv-2608-30378v2-9265e22195",
       "title": "PAVE: Predictive Alignment and Value-Guided Evolution for World-Action Policies",
       "authors": [
         "Botong Zhao",
         "Fang Yu",
-        "Tim",
+        "Tim Yu",
         "Senhua Zhu",
         "Xinyuan Chen",
         "Yue Lu"
@@ -485,7 +670,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-31T07:36:11Z",
-      "fetchedAt": "2026-09-02T16:36:43.110704+00:00",
+      "fetchedAt": "2026-09-03T04:36:18.425385+00:00",
       "topics": [
         "VLA",
         "benchmark",
@@ -494,8 +679,8 @@
         "reinforcement learning"
       ],
       "summary": "Direct vision-language-action policies generate continuous robot actions efficiently, but standard behavior cloning leaves two complementary gaps: their representations are not explicitly required to describe how the scene evolves over multiple time scales, and deployment trajectories of unequal quality are often reused without separating useful dynamics from undesirable behavior. We introduce \\method, a direct...",
-      "url": "http://arxiv.org/abs/2608.30378v1",
-      "pdfUrl": "http://arxiv.org/pdf/2608.30378v1",
+      "url": "http://arxiv.org/abs/2608.30378v2",
+      "pdfUrl": "http://arxiv.org/pdf/2608.30378v2",
       "summaryStatus": "abstract-derived; needs human verification"
     },
     {
@@ -514,7 +699,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-31T05:55:34Z",
-      "fetchedAt": "2026-09-02T16:36:43.110874+00:00",
+      "fetchedAt": "2026-09-03T04:36:18.425525+00:00",
       "topics": [
         "VLA",
         "benchmark",
@@ -540,7 +725,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-31T04:52:54Z",
-      "fetchedAt": "2026-09-02T16:36:39.770348+00:00",
+      "fetchedAt": "2026-09-03T04:36:15.153955+00:00",
       "topics": [
         "imitation learning",
         "reinforcement learning"
@@ -566,7 +751,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-31T04:44:33Z",
-      "fetchedAt": "2026-09-02T16:36:46.359348+00:00",
+      "fetchedAt": "2026-09-03T04:36:21.663086+00:00",
       "topics": [
         "dexterous manipulation",
         "imitation learning",
@@ -576,77 +761,6 @@
       "summary": "General embodied agents should perceive, predict, act, evaluate, and improve within a unified system. World models have shown great promise in building such agents, yet existing models typically append an action output head to a world simulator, without coupling them into a closed decision-and-learning loop for policy improvement.",
       "url": "http://arxiv.org/abs/2608.30237v1",
       "pdfUrl": "http://arxiv.org/pdf/2608.30237v1",
-      "summaryStatus": "abstract-derived; needs human verification"
-    },
-    {
-      "id": "arxiv-2608-30144v1-db5e00d519",
-      "title": "Rethinking Language's Role in Efficient VLA for Autonomous Vehicles: Toward Smarter, Trustworthy Driving",
-      "authors": [
-        "Tongfei Guo",
-        "Lili Su"
-      ],
-      "year": 2026,
-      "venue": "arXiv",
-      "publishedAt": "2026-08-31T01:51:51Z",
-      "fetchedAt": "2026-09-02T16:36:43.110972+00:00",
-      "topics": [
-        "VLA",
-        "benchmark",
-        "foundation models"
-      ],
-      "summary": "Vision-Language-Action (VLA) models are reshaping autonomous driving (AD) by unifying perception, reasoning, and control through language, enabling semantic grounding, interpretable decisions, and better long-tail generalization. But language is expensive onboard: latency and memory budgets are tight, and autoregressive decoding is inherently sequential.",
-      "url": "http://arxiv.org/abs/2608.30144v1",
-      "pdfUrl": "http://arxiv.org/pdf/2608.30144v1",
-      "summaryStatus": "abstract-derived; needs human verification"
-    },
-    {
-      "id": "arxiv-2608-30122v1-3e5191a1ed",
-      "title": "Aligning Multi-Trajectory Supervision with Policy Optimization for VLA Driving",
-      "authors": [
-        "Tian Zhang",
-        "Zhuo Huang",
-        "Hongrui Ye",
-        "Yu Wu",
-        "Zengmao Wang",
-        "Kaixuan Zhou"
-      ],
-      "year": 2026,
-      "venue": "arXiv",
-      "publishedAt": "2026-08-31T01:17:18Z",
-      "fetchedAt": "2026-09-02T16:36:43.111100+00:00",
-      "topics": [
-        "VLA",
-        "foundation models",
-        "imitation learning",
-        "reinforcement learning",
-        "robot manipulation"
-      ],
-      "summary": "Vision-language-action (VLA) driving methods increasingly combine multi-trajectory imitation learning with group-relative policy optimization (GRPO), making trajectory selection critical to final performance. However, some high-scoring trajectories that improve imitation can degrade subsequent GRPO by inducing advantage estimates misaligned with the current policy's feasible behavior distribution, driving updates...",
-      "url": "http://arxiv.org/abs/2608.30122v1",
-      "pdfUrl": "http://arxiv.org/pdf/2608.30122v1",
-      "summaryStatus": "abstract-derived; needs human verification"
-    },
-    {
-      "id": "arxiv-2608-29967v1-496d066f9c",
-      "title": "Training-Free Action Correction for VLA Model Failures via Language Feedback",
-      "authors": [
-        "Owen Kwon",
-        "Pablo Ortega-Kral",
-        "Arthur Bucker",
-        "Jean Oh"
-      ],
-      "year": 2026,
-      "venue": "arXiv",
-      "publishedAt": "2026-08-30T18:54:03Z",
-      "fetchedAt": "2026-09-02T16:36:43.111240+00:00",
-      "topics": [
-        "VLA",
-        "foundation models",
-        "reinforcement learning"
-      ],
-      "summary": "Vision-Language-Action (VLA) models demonstrate strong semantic understanding yet exhibit systematic failures during deployment. The conditions under which these failures occur, and whether they can be corrected without retraining, remain poorly understood.",
-      "url": "http://arxiv.org/abs/2608.29967v1",
-      "pdfUrl": "http://arxiv.org/pdf/2608.29967v1",
       "summaryStatus": "abstract-derived; needs human verification"
     },
     {
@@ -660,7 +774,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-30T14:50:35Z",
-      "fetchedAt": "2026-09-02T16:36:33.199908+00:00",
+      "fetchedAt": "2026-09-03T04:36:08.497966+00:00",
       "topics": [
         "VLA",
         "dexterous manipulation",
@@ -685,7 +799,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-30T13:01:32Z",
-      "fetchedAt": "2026-09-02T16:36:39.770484+00:00",
+      "fetchedAt": "2026-09-03T04:36:15.154087+00:00",
       "topics": [
         "imitation learning",
         "reinforcement learning"
@@ -709,7 +823,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-30T12:56:43Z",
-      "fetchedAt": "2026-09-02T16:36:36.481363+00:00",
+      "fetchedAt": "2026-09-03T04:36:11.783458+00:00",
       "topics": [
         "reinforcement learning"
       ],
@@ -730,7 +844,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-30T12:56:09Z",
-      "fetchedAt": "2026-09-02T16:36:36.481493+00:00",
+      "fetchedAt": "2026-09-03T04:36:11.783590+00:00",
       "topics": [
         "foundation models",
         "reinforcement learning"
@@ -752,7 +866,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-30T12:53:20Z",
-      "fetchedAt": "2026-09-02T16:36:33.200064+00:00",
+      "fetchedAt": "2026-09-03T04:36:08.498117+00:00",
       "topics": [
         "robot manipulation"
       ],
@@ -773,7 +887,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-30T00:32:01Z",
-      "fetchedAt": "2026-09-02T16:36:46.359493+00:00",
+      "fetchedAt": "2026-09-03T04:36:21.663217+00:00",
       "topics": [
         "dexterous manipulation",
         "robot manipulation"
@@ -794,7 +908,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-29T17:26:20Z",
-      "fetchedAt": "2026-09-02T16:36:33.200167+00:00",
+      "fetchedAt": "2026-09-03T04:36:08.498223+00:00",
       "topics": [
         "foundation models",
         "robot manipulation"
@@ -802,30 +916,6 @@
       "summary": "A language-guided robot operating in a real kitchen must do more than produce a plan that appears correct. It must also execute that plan safely in cluttered environments under imperfect perception.",
       "url": "http://arxiv.org/abs/2608.29379v1",
       "pdfUrl": "http://arxiv.org/pdf/2608.29379v1",
-      "summaryStatus": "abstract-derived; needs human verification"
-    },
-    {
-      "id": "arxiv-2608-29078v1-0cde82705b",
-      "title": "DREAM: Deployment-Time Demonstration Generation via Real-to-Sim for Scalable Policy Adaptation",
-      "authors": [
-        "Makoto Sato",
-        "Tatsuya Matsushima",
-        "Yutaka Matsuo",
-        "Yusuke Iwasawa"
-      ],
-      "year": 2026,
-      "venue": "arXiv",
-      "publishedAt": "2026-08-29T06:10:20Z",
-      "fetchedAt": "2026-09-02T16:36:33.200266+00:00",
-      "topics": [
-        "VLA",
-        "foundation models",
-        "imitation learning",
-        "robot manipulation"
-      ],
-      "summary": "Vision-language-action (VLA) models have made strong progress in language-conditioned robot manipulation, but improving their performance in a new workspace still often requires action-labeled data from that environment. Collecting such data by human teleoperation is costly, especially when each workspace, object arrangement, or task may require new demonstrations.",
-      "url": "http://arxiv.org/abs/2608.29078v1",
-      "pdfUrl": "http://arxiv.org/pdf/2608.29078v1",
       "summaryStatus": "abstract-derived; needs human verification"
     },
     {
@@ -839,7 +929,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-29T03:33:23Z",
-      "fetchedAt": "2026-09-02T16:36:36.481604+00:00",
+      "fetchedAt": "2026-09-03T04:36:11.783702+00:00",
       "topics": [
         "imitation learning",
         "reinforcement learning"
@@ -865,7 +955,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-28T17:53:48Z",
-      "fetchedAt": "2026-09-02T16:36:46.359651+00:00",
+      "fetchedAt": "2026-09-03T04:36:21.663361+00:00",
       "topics": [
         "dexterous manipulation",
         "reinforcement learning",
@@ -877,44 +967,43 @@
       "summaryStatus": "abstract-derived; needs human verification"
     },
     {
-      "id": "arxiv-2608-28570v1-843de7f7d6",
-      "title": "ChainSplat: A Physics-Inspired Screw-Theoretic Model for Learning Deformable Linear Object Dynamics from Multi-View RGB Videos",
+      "id": "arxiv-2608-28518v1-a8729d0cf4",
+      "title": "When Robots Mishear Us: Mapping the Safety Risks of Voice-Controlled Embodied AI",
       "authors": [
-        "Seungyeon Kim",
-        "Noémie Jaquier"
+        "Sihan Jia",
+        "Oliver Lemon"
       ],
       "year": 2026,
       "venue": "arXiv",
-      "publishedAt": "2026-08-28T17:46:38Z",
-      "fetchedAt": "2026-09-02T16:36:33.200396+00:00",
+      "publishedAt": "2026-08-28T16:55:32Z",
+      "fetchedAt": "2026-09-03T04:36:24.958785+00:00",
       "topics": [
-        "reinforcement learning",
-        "robot manipulation"
+        "benchmark",
+        "embodied AI"
       ],
-      "summary": "Identifying the underlying dynamics and 3D geometry of deformable linear objects (DLOs), such as cables, ropes, and hoses, is essential for accurate robotic manipulation, but remains challenging due to their high-dimensional configuration spaces and diverse behaviors arising from varying material properties. Existing methods often rely on multi-stage pipelines and auxiliary depth inputs, which are prone to errors...",
-      "url": "http://arxiv.org/abs/2608.28570v1",
-      "pdfUrl": "http://arxiv.org/pdf/2608.28570v1",
+      "summary": "We investigate whether automatic speech recognition (ASR) errors in user input can lead to unsafe outputs from Embodied AI (EAI) models. We find that ASR errors can lead to harmful instructions being accepted and executed by EAI models, thereby reducing safety.",
+      "url": "http://arxiv.org/abs/2608.28518v1",
+      "pdfUrl": "http://arxiv.org/pdf/2608.28518v1",
       "summaryStatus": "abstract-derived; needs human verification"
     },
     {
-      "id": "arxiv-2608-27726v1-f8e6b3053f",
-      "title": "Coordinated Motion Planning for Multi-Arm Systems via Iterative LQ Games",
+      "id": "arxiv-2608-27407v1-5be8089290",
+      "title": "Reconstructing Humans and Objects in Interaction using Large Reconstruction Models",
       "authors": [
-        "Junyoung Kim",
-        "Hanwen Ren",
-        "Lei Zhang",
-        "Ahmed H. Qureshi"
+        "Agniv Chatterjee",
+        "Georgios Pavlakos"
       ],
       "year": 2026,
       "venue": "arXiv",
-      "publishedAt": "2026-08-27T21:33:38Z",
-      "fetchedAt": "2026-09-02T16:36:33.200549+00:00",
+      "publishedAt": "2026-08-27T17:35:46Z",
+      "fetchedAt": "2026-09-03T04:36:24.958931+00:00",
       "topics": [
-        "robot manipulation"
+        "benchmark",
+        "embodied AI"
       ],
-      "summary": "Multi-agent motion planning for high-degree-of-freedom robotics manipulators in shared workspaces remains a fundamental yet challenging problem. Centralized planners often suffer from poor scalability, while decentralized approaches face robustness and safety concerns.",
-      "url": "http://arxiv.org/abs/2608.27726v1",
-      "pdfUrl": "http://arxiv.org/pdf/2608.27726v1",
+      "summary": "Estimation of Human-Object Interactions in 3D (3D HOI) is a fundamental problem in 3D computer vision with applications in AR/VR, robotics, and embodied AI. However, reconstructing these interactions in 3D remains challenging due to depth ambiguities, occlusions, and object shape variability.",
+      "url": "http://arxiv.org/abs/2608.27407v1",
+      "pdfUrl": "http://arxiv.org/pdf/2608.27407v1",
       "summaryStatus": "abstract-derived; needs human verification"
     },
     {
@@ -927,7 +1016,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-27T14:10:39Z",
-      "fetchedAt": "2026-09-02T16:36:36.481710+00:00",
+      "fetchedAt": "2026-09-03T04:36:11.783820+00:00",
       "topics": [
         "benchmark",
         "diffusion",
@@ -954,7 +1043,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-26T17:25:10Z",
-      "fetchedAt": "2026-09-02T16:36:39.770640+00:00",
+      "fetchedAt": "2026-09-03T04:36:15.154232+00:00",
       "topics": [
         "benchmark",
         "foundation models",
@@ -982,7 +1071,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-26T10:27:08Z",
-      "fetchedAt": "2026-09-02T16:36:39.770815+00:00",
+      "fetchedAt": "2026-09-03T04:36:15.154373+00:00",
       "topics": [
         "imitation learning",
         "reinforcement learning",
@@ -1007,7 +1096,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-26T09:52:30Z",
-      "fetchedAt": "2026-09-02T16:36:39.770955+00:00",
+      "fetchedAt": "2026-09-03T04:36:15.154494+00:00",
       "topics": [
         "VLA",
         "benchmark",
@@ -1031,7 +1120,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-26T09:01:36Z",
-      "fetchedAt": "2026-09-02T16:36:46.359844+00:00",
+      "fetchedAt": "2026-09-03T04:36:21.663446+00:00",
       "topics": [
         "dexterous manipulation",
         "robot manipulation"
@@ -1054,7 +1143,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-25T13:59:35Z",
-      "fetchedAt": "2026-09-02T16:36:46.360017+00:00",
+      "fetchedAt": "2026-09-03T04:36:21.663558+00:00",
       "topics": [
         "benchmark",
         "dexterous manipulation",
@@ -1077,7 +1166,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-25T03:31:24Z",
-      "fetchedAt": "2026-09-02T16:36:39.771101+00:00",
+      "fetchedAt": "2026-09-03T04:36:15.154628+00:00",
       "topics": [
         "imitation learning",
         "reinforcement learning"
@@ -1102,7 +1191,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-24T04:46:25Z",
-      "fetchedAt": "2026-09-02T16:36:39.771197+00:00",
+      "fetchedAt": "2026-09-03T04:36:15.154725+00:00",
       "topics": [
         "VLA",
         "imitation learning",
@@ -1125,7 +1214,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-23T20:56:29Z",
-      "fetchedAt": "2026-09-02T16:36:39.771294+00:00",
+      "fetchedAt": "2026-09-03T04:36:15.154950+00:00",
       "topics": [
         "benchmark",
         "diffusion",
@@ -1148,7 +1237,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-23T11:58:42Z",
-      "fetchedAt": "2026-09-02T16:36:39.771413+00:00",
+      "fetchedAt": "2026-09-03T04:36:15.155075+00:00",
       "topics": [
         "benchmark",
         "imitation learning",
@@ -1157,6 +1246,28 @@
       "summary": "World models enable agents to reason about future outcomes and learn policies from their knowledge of state transition, but existing approaches primarily focus on reconstructing future observations or features, which introduces unnecessary complexity and limits their effectiveness for decision making. In this work, we propose a compatibility prediction Latent World Model (LWM) for robot navigation that predicts...",
       "url": "http://arxiv.org/abs/2608.26190v1",
       "pdfUrl": "http://arxiv.org/pdf/2608.26190v1",
+      "summaryStatus": "abstract-derived; needs human verification"
+    },
+    {
+      "id": "arxiv-2608-28664v1-746e74ccc6",
+      "title": "The Potential of Haptic Foundation Models",
+      "authors": [
+        "Jianquan Wang",
+        "Haiwei Dong",
+        "Abdulmotaleb El Saddik"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publishedAt": "2026-08-23T03:30:23Z",
+      "fetchedAt": "2026-09-03T04:36:24.959053+00:00",
+      "topics": [
+        "benchmark",
+        "embodied AI",
+        "foundation models"
+      ],
+      "summary": "Despite the success of foundation models in language and vision, their expansion into embodied AI is bottlenecked by a lack of generalized touch sensing. This limitation is especially relevant to consumer electronics, where smartphones, wearables, VR controllers, home robots, and health monitoring devices require safe and adaptive physical interaction.",
+      "url": "http://arxiv.org/abs/2608.28664v1",
+      "pdfUrl": "http://arxiv.org/pdf/2608.28664v1",
       "summaryStatus": "abstract-derived; needs human verification"
     },
     {
@@ -1174,7 +1285,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-21T06:53:55Z",
-      "fetchedAt": "2026-09-02T16:36:39.771566+00:00",
+      "fetchedAt": "2026-09-03T04:36:15.155232+00:00",
       "topics": [
         "benchmark",
         "imitation learning"
@@ -1200,7 +1311,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-20T20:16:11Z",
-      "fetchedAt": "2026-09-02T16:36:46.360175+00:00",
+      "fetchedAt": "2026-09-03T04:36:21.663705+00:00",
       "topics": [
         "benchmark",
         "dexterous manipulation",
@@ -1210,6 +1321,35 @@
       "summary": "As the demand for larger manipulation datasets grows, handheld robotic gripper data collection and the associated gripper designs become more vital. Current data collection device designs trend towards matching the morphologies of existing robotic grippers, sacrificing ergonomics and manipulation performance.",
       "url": "http://arxiv.org/abs/2608.20546v1",
       "pdfUrl": "http://arxiv.org/pdf/2608.20546v1",
+      "summaryStatus": "abstract-derived; needs human verification"
+    },
+    {
+      "id": "arxiv-2608-20308v3-c0c8ebd76f",
+      "title": "ACE-Ego-Hand: Repurposing Video Diffusion Models for Occlusion-Robust Egocentric 3D Hand Motion Recovery",
+      "authors": [
+        "Yufei Liu",
+        "Xixi Wang",
+        "Hao Li",
+        "Ganlong Zhao",
+        "Kaitong Cai",
+        "Chengkai Jin",
+        "Chunxiao Liu",
+        "Jianbo Liu"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publishedAt": "2026-08-20T17:46:24Z",
+      "fetchedAt": "2026-09-03T04:36:24.959182+00:00",
+      "topics": [
+        "benchmark",
+        "dexterous manipulation",
+        "diffusion",
+        "embodied AI",
+        "robot manipulation"
+      ],
+      "summary": "Egocentric video offers scalable manipulation data for embodied AI, yet recovering metric 3D hand trajectories remains challenging due to severe object occlusion and frequent out-of-sight gaps. Existing single-frame and windowed temporal regressors fail when a hand shortly leaves the frame, while recent video diffusion models (VDMs) rely on heavy, stochastic multi-step sampling as pixel-space renderers.",
+      "url": "http://arxiv.org/abs/2608.20308v3",
+      "pdfUrl": "http://arxiv.org/pdf/2608.20308v3",
       "summaryStatus": "abstract-derived; needs human verification"
     },
     {
@@ -1227,7 +1367,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-20T12:50:18Z",
-      "fetchedAt": "2026-09-02T16:36:39.771673+00:00",
+      "fetchedAt": "2026-09-03T04:36:15.155340+00:00",
       "topics": [
         "imitation learning",
         "reinforcement learning"
@@ -1251,7 +1391,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-19T20:56:18Z",
-      "fetchedAt": "2026-09-02T16:36:46.360292+00:00",
+      "fetchedAt": "2026-09-03T04:36:21.663831+00:00",
       "topics": [
         "dexterous manipulation",
         "reinforcement learning",
@@ -1260,6 +1400,73 @@
       "summary": "Thanks to its parallelizability and flexibility, sampling-based Model Predictive Control (MPC) has become widely popular for controlling real-world robotic systems. However, for high-dimensional and open-loop unstable dynamical systems, the required number of samples to improve the control sequence will grow exponentially with the horizon, leading to poor sample efficiency and numerical instability.",
       "url": "http://arxiv.org/abs/2608.19443v1",
       "pdfUrl": "http://arxiv.org/pdf/2608.19443v1",
+      "summaryStatus": "abstract-derived; needs human verification"
+    },
+    {
+      "id": "arxiv-2608-19375v1-695b1f1963",
+      "title": "Learning the Right Abstraction: Neural Reduced Dynamics for Complex Robot Control",
+      "authors": [
+        "Harry Zhang",
+        "Dan Negrut"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publishedAt": "2026-08-19T18:41:27Z",
+      "fetchedAt": "2026-09-03T04:36:24.959336+00:00",
+      "topics": [
+        "embodied AI",
+        "reinforcement learning",
+        "robot manipulation"
+      ],
+      "summary": "High-fidelity embodied AI simulators provide realistic evaluation of complex robotic systems, but their computational cost limits their direct use for large-scale reinforcement learning campaigns. We advocate the use of less accurate but more expeditious simulations, which might draw on data-driven, e.g., neural dynamics, models.",
+      "url": "http://arxiv.org/abs/2608.19375v1",
+      "pdfUrl": "http://arxiv.org/pdf/2608.19375v1",
+      "summaryStatus": "abstract-derived; needs human verification"
+    },
+    {
+      "id": "arxiv-2608-18840v1-92e02046ef",
+      "title": "Beyond Placement and Articulation: Usage-Driven Code Scenes for Embodied Interaction",
+      "authors": [
+        "Zijian Xiao",
+        "Zipeng Ye",
+        "Jinkun Hao",
+        "Xiong Yang",
+        "Yuchen Xie",
+        "Ran Yi"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publishedAt": "2026-08-19T12:00:35Z",
+      "fetchedAt": "2026-09-03T04:36:24.959458+00:00",
+      "topics": [
+        "embodied AI",
+        "robot manipulation"
+      ],
+      "summary": "Indoor scene synthesis provides essential environments for embodied AI, robotic manipulation, and simulation-based policy learning. Recent code-based scene generation methods produce editable and extensible environments, yet they remain focused on visual construction and object-level articulation, leaving the functional usage of scenes largely unmodeled.",
+      "url": "http://arxiv.org/abs/2608.18840v1",
+      "pdfUrl": "http://arxiv.org/pdf/2608.18840v1",
+      "summaryStatus": "abstract-derived; needs human verification"
+    },
+    {
+      "id": "arxiv-2608-18671v1-ee523f261e",
+      "title": "Vision-Language Models for Egocentric Video: From Hand-Object Interaction to Embodied AI",
+      "authors": [
+        "Mohammad Zamani",
+        "Fatemeh Ziaeetabar"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publishedAt": "2026-08-19T08:21:58Z",
+      "fetchedAt": "2026-09-03T04:36:24.959594+00:00",
+      "topics": [
+        "benchmark",
+        "dexterous manipulation",
+        "embodied AI",
+        "foundation models"
+      ],
+      "summary": "Egocentric video captures activities from the wearer's perspective, providing a direct view of human attention, hand--object interaction, and goal-directed behavior. This perspective is increasingly important for wearable intelligence, assistive systems, human--robot interaction, and embodied AI, yet it introduces challenges including ego-motion, occlusion, small active objects, viewpoint-dependent appearance, and...",
+      "url": "http://arxiv.org/abs/2608.18671v1",
+      "pdfUrl": "http://arxiv.org/pdf/2608.18671v1",
       "summaryStatus": "abstract-derived; needs human verification"
     },
     {
@@ -1278,7 +1485,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-19T07:11:06Z",
-      "fetchedAt": "2026-09-02T16:36:46.360435+00:00",
+      "fetchedAt": "2026-09-03T04:36:21.664003+00:00",
       "topics": [
         "benchmark",
         "dexterous manipulation",
@@ -1303,7 +1510,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-17T13:36:32Z",
-      "fetchedAt": "2026-09-02T16:36:46.360571+00:00",
+      "fetchedAt": "2026-09-03T04:36:21.664142+00:00",
       "topics": [
         "dexterous manipulation",
         "imitation learning",
@@ -1313,6 +1520,29 @@
       "summary": "Learning from demonstration is a promising approach for dexterous manipulation, but collecting high-quality contact-critical demonstrations remains difficult with low-cost teleoperation hardware. We present ViHaTeleop, a lightweight (0.7 kg), low-cost (\\$550) visual-haptic teleoperation system with SLAM-based wrist tracking, camera-based hand tracking, and finger-wise vibrotactile feedback through Linear Resonant...",
       "url": "http://arxiv.org/abs/2608.16572v1",
       "pdfUrl": "http://arxiv.org/pdf/2608.16572v1",
+      "summaryStatus": "abstract-derived; needs human verification"
+    },
+    {
+      "id": "arxiv-2608-16555v1-6efdf53e71",
+      "title": "Co-design of Neural and Muscle Network based on Embodied Perceptron Representation",
+      "authors": [
+        "Siyuan Tao",
+        "Yoichi Masuda",
+        "Hiroyuki Nabae",
+        "Masato Ishikawa"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publishedAt": "2026-08-17T13:25:09Z",
+      "fetchedAt": "2026-09-03T04:36:24.959747+00:00",
+      "topics": [
+        "embodied AI",
+        "reinforcement learning",
+        "robot manipulation"
+      ],
+      "summary": "Recent advances in AI technologies have enabled the advanced design of complex control policies. In contrast, focusing on the body, many robots still employ simple bodies that can limit adaptability to environments.",
+      "url": "http://arxiv.org/abs/2608.16555v1",
+      "pdfUrl": "http://arxiv.org/pdf/2608.16555v1",
       "summaryStatus": "abstract-derived; needs human verification"
     },
     {
@@ -1330,7 +1560,7 @@
       "year": 2026,
       "venue": "arXiv",
       "publishedAt": "2026-08-16T20:21:33Z",
-      "fetchedAt": "2026-09-02T16:36:46.360708+00:00",
+      "fetchedAt": "2026-09-03T04:36:21.664283+00:00",
       "topics": [
         "benchmark",
         "dexterous manipulation",
@@ -1344,27 +1574,86 @@
       "summaryStatus": "abstract-derived; needs human verification"
     },
     {
-      "id": "arxiv-2608-15560v1-fd28c48d24",
-      "title": "ReForce: Learning Force-aware Retargeting for Dexterous Manipulation",
+      "id": "arxiv-2608-15636v1-801e47e9fc",
+      "title": "Algorithm-Architecture Co-Design for Efficient VLA Inference via Speculative Inference and Verification",
       "authors": [
-        "Yuhang Wu",
-        "Lingqi Zeng",
-        "Changwei Jing",
-        "Jianglong Ye",
-        "Xiaolong Wang"
+        "Chunyu Qi",
+        "Zhuoran Song",
+        "Jian Weng",
+        "Haozhe Jiang",
+        "Xueyuan Liu",
+        "Naifeng Jing",
+        "Guanghui He",
+        "Xiaoyao Liang"
       ],
       "year": 2026,
       "venue": "arXiv",
-      "publishedAt": "2026-08-16T06:13:14Z",
-      "fetchedAt": "2026-09-02T16:36:46.360856+00:00",
+      "publishedAt": "2026-08-16T08:59:22Z",
+      "fetchedAt": "2026-09-03T04:36:24.959873+00:00",
       "topics": [
-        "dexterous manipulation",
-        "imitation learning",
+        "VLA",
+        "benchmark",
+        "embodied AI",
+        "foundation models",
         "robot manipulation"
       ],
-      "summary": "Human demonstrations offer a scalable data source for dexterous manipulation, but transferring them to robot actions remains challenging due to the embodiment gap. Today's retargeting is mostly kinematic, yet manipulation is decided by force, which governs how the hand interacts with the object and how the object moves.",
-      "url": "http://arxiv.org/abs/2608.15560v1",
-      "pdfUrl": "http://arxiv.org/pdf/2608.15560v1",
+      "summary": "Vision-Language-Action (VLA) models have demonstrated remarkable capabilities in the field of embodied AI, but their high computational cost and limited predicted action length hinder real-time deployment. Although Dadu-Corki, a dedicated accelerator for efficient embodied AI, has been introduced, it does not exploit the inherent interaction patterns between the robot and its environment, which results in a...",
+      "url": "http://arxiv.org/abs/2608.15636v1",
+      "pdfUrl": "http://arxiv.org/pdf/2608.15636v1",
+      "summaryStatus": "abstract-derived; needs human verification"
+    },
+    {
+      "id": "arxiv-2608-15605v1-66afb132c7",
+      "title": "AlloEgo-VLM: Disambiguating Allocentric and Egocentric Reference Frames in Vision-Language Models",
+      "authors": [
+        "Kuan-Lin Chen",
+        "Tzu-Ti Wei",
+        "Chao-Chi Liao",
+        "Yu-Chee Tseng",
+        "Jen-Jee Chen"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publishedAt": "2026-08-16T08:06:20Z",
+      "fetchedAt": "2026-09-03T04:36:24.960026+00:00",
+      "topics": [
+        "benchmark",
+        "dexterous manipulation",
+        "embodied AI",
+        "foundation models",
+        "reinforcement learning"
+      ],
+      "summary": "This study investigates the challenge of ambiguity faced by Vision-Language Models (VLMs) in understanding spatial semantics. Spatial cognition, shaped by cognitive psychology, spatial science, and cultural context, often assigns directionality to objects.",
+      "url": "http://arxiv.org/abs/2608.15605v1",
+      "pdfUrl": "http://arxiv.org/pdf/2608.15605v1",
+      "summaryStatus": "abstract-derived; needs human verification"
+    },
+    {
+      "id": "arxiv-2608-15502v1-1778c21a6a",
+      "title": "EcoVLA: Energy-Efficient Device-Edge Co-Inference for Vision-Language-Action Models under Real-Time Constraints",
+      "authors": [
+        "Ao Zhou",
+        "Bo Dai",
+        "Le Yu",
+        "Xingyu Liu",
+        "Zeyu Hao",
+        "Lingkun Long",
+        "Chunming Hu",
+        "Jianlei Yang"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publishedAt": "2026-08-16T03:08:40Z",
+      "fetchedAt": "2026-09-03T04:36:24.960147+00:00",
+      "topics": [
+        "VLA",
+        "embodied AI",
+        "foundation models",
+        "reinforcement learning"
+      ],
+      "summary": "Vision-Language-Action (VLA) models have emerged as a promising foundation for Embodied AI, but their high inference cost poses significant challenges for deployment in robotic systems. In practice, on-device inference is constrained by limited compute capacity and energy budgets, struggling to simultaneously satisfy real-time control and energy efficiency requirements.",
+      "url": "http://arxiv.org/abs/2608.15502v1",
+      "pdfUrl": "http://arxiv.org/pdf/2608.15502v1",
       "summaryStatus": "abstract-derived; needs human verification"
     }
   ]
